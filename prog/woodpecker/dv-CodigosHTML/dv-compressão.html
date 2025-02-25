@@ -1,0 +1,176 @@
+<!DOCTYPE html> 
+
+<html>
+    <script src="../dv-CodigosJS/dv-fcompressão.js"></script>
+    <script src="../pdfmake.min.js"></script>
+    <script src="../vfs_fonts.js"></script>
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../dv-style.css" media="screen"/>
+        <title>Compressão Normal às Fibras</title>
+
+    </head>
+
+    <body>
+
+        <img src="../dv-Imagens/dv-woodpecker.png" id="logoprograma" width="8%" height="8%">
+        <img src="../dv-Imagens/dv-ufclaro.png" id="logoufscar" width="10%" height="10%">
+
+        <ul>
+            <li><a class="menu" href="../dv-homepage.html">Início</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-geometria.html">Geometria</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-resistencia-calculo.html">Resistência ao Cálculo</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-flexao-simples.html">Flexão Simples</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-cisalhamento.html">Cisalhamento</a></li>
+            <li><a class="menu active" href="#same">Compressão Normal às Fibras</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-estabilidade.html">Estabilidade Lateral de Vigas</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-ELS.html">Estado Limite de Serviço</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-explicaçao.html">Explicações</a></li>
+        </ul>
+        <br><br><br>
+
+        <div id="dv-margen" style="margin-right: 17%; margin-left: 17%;">
+
+            <div id="dv-explicacao-compressao">
+
+
+                Nesta página será calculado o quanto uma viga de madeira é capaz de resistir à <strong>Compressão Normal às Fibras</strong>.
+                <br><br>
+                A compressão normal às fibras, em vigas de madeira, ocorrem, principalmente, em dois locais:
+                <div style="margin-left: 3%;">
+                    Onde há apoios;<br>
+                    No ponto onde a força é aplicada perpendicularmente a fibra.
+                </div>
+                <br>
+                As informações necessárias nesta página são:
+                <div style="margin-left: 3%;">
+                    O valor da força de compressão;<br>
+                    A distância até a borda da viga;<br>
+                    A largura de aplicação da força.
+                </div>
+                <br>
+
+                As contas realizadas nessa página são baseadas nas informações dadas anteriormente nas outras páginas.
+
+                <br><br><br><br>
+                    <table>
+                        <td>
+                            <button type="button" class="button buttoncalculo" onclick="dv_Entendi()">Entendi</button>
+                        </td>
+                        <td>
+                            <button type="button" class="button buttoncalculo" onclick="location.href='../dv-CodigosHTML/dv-explicaçao.html'">Não Entendi</button>
+                        </td>
+                    </table>
+            </div>
+
+            <div id="dv-entrada-de-dados-compressao" style="display: none;">
+
+                <center><h2>Cálculo da Compressão Normal às Fibras da Madeira</h2></center>
+                <br><br><br>
+
+                <label for="dv-for-nor">Qual é a força aplicada?</label><br>
+                <input type="number" id="dv-for-nor" value=""> kN <br>
+                Em duvida?
+                <a href="dv-explicaçao.html##Compressão" target="_blank">
+                    <span style="cursor:help">
+                        <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                </a>
+
+                <img src="../dv-Imagens/dv-1.png" id="dv-fletor-obliqua" width="30%" height="30%" style="float: right;">
+                <br><br><br><br>
+
+                <label for="dv-dis-for">Qual a distância (a) até a borda da viga?</label><br>
+                <input type="number" id="dv-dis-for" value=""> mm<br>
+                Em duvida?
+                <a href="dv-explicaçao.html##Compressão" target="_blank">
+                    <span style="cursor:help">
+                        <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                </a>
+
+
+                <br><br><br><br>
+
+                <label for="dv-lar-for">Por quantos mm a força está sendo aplicada na largura (l)?</label><br>
+                <input type="number" id="dv-lar-for" value=""> mm<br>
+                Em duvida?
+                <a href="dv-explicaçao.html##Compressão" target="_blank">
+                    <span style="cursor:help">
+                        <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                </a>
+                <br><br><br><br>
+
+                
+                <button type="button" class="button buttoncalculo" 
+                onclick="dv_Verificar(), dv_Coeficiente_an()">
+                Salvar Valores</button>
+                <br><br><br><br>
+
+                <div id="dv-conta-compressao" style="display: none;">
+
+                    <button type="button" class="button buttoncalculo" onclick="dv_Compressao()">Calcular</button><br><br>
+                    <div id="dv-resposta">
+                        <br><br>
+                        <ins id="dv-res-com"></ins><br>
+                        <ins id="dv-resultado"></ins>
+                        <br><br><br>
+                    </div>
+                    <br><br><br><br>
+
+                      <!-- Libera o PDF com as contas -->
+                      <button type="button" class="button buttoncalculo" onclick="dv_PDFComp()">Emitir PDF</button>
+                      <br><br><br><br>
+  
+                      <a href="../dv-CodigosHTML/dv-estabilidade.html">Continue aqui</a>
+                      <br><br><br><br>
+                </div>
+  
+              </div>
+  
+          </div>
+  
+          <div id="dv-rodape" class="rodape" style="display: none;">
+              <div class="row">
+                  <div class="column">
+                    <b>Desenvolvido por:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/4101333847048666" target="_blank">
+                        Raquel Oliveira Azevedo
+                    </a><br>
+					<a href="http://lattes.cnpq.br/7623383075429186" target="_blank">
+						André Luis Christoforo
+					</a><br>
+                    <a href="http://lattes.cnpq.br/1986028653323442" target="_blank">
+                        Isabella Silva Menezes
+                    </a><br>
+                </div>
+				<div class="column">
+                    <b>Colaboradores:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/8465474056220474" target="_blank">
+                        Matheus Henrique Morato de Moraes
+                    </a><br>
+					<a href="http://lattes.cnpq.br/2333091200416653" target="_blank">
+						Francisco Antonio Rocco Lahr
+					</a><br>
+                    <a href="http://lattes.cnpq.br/2268506213083114" target="_blank">
+                        Wanderlei Malaquias Pereira Junior
+                    </a><br>
+                </div>
+                <div class="column">
+                    <b>Contato</b><br>
+                    <br>
+					<a>ec.isabellasm@gmail.com</a><br>
+                    <a>raquel.azevedo@estudante.ufscar.br</a><br><br>
+                    <b>Logo</b>: Julia Sanchez Sáez
+                </div>
+                  <div class="column" align="right">
+                    <b>Referência</b>
+                    <br><br>
+                    ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. ABNT NBR 7190-1: Projeto de estruturas de madeira – Parte 1: Critérios de dimensionamento. Rio de Janeiro: ABNT, 2022.
+                </div>
+              </div>
+          </div>
+    </body>
+    
+</html>

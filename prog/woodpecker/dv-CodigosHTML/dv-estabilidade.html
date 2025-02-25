@@ -1,0 +1,184 @@
+<!DOCTYPE html> 
+
+<html>
+    <script src="../dv-CodigosJS/dv-festabilidade.js"></script>
+    <script src="../pdfmake.min.js"></script>
+    <script src="../vfs_fonts.js"></script>
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../dv-style.css" media="screen"/>
+        <title>Estabilidade Lateral</title>
+
+    </head>
+
+    <body>
+
+        <img src="../dv-Imagens/dv-woodpecker.png" id="logoprograma" width="8%" height="8%">
+        <img src="../dv-Imagens/dv-ufclaro.png" id="logoufscar" width="10%" height="10%">
+
+        <ul>
+            <li><a class="menu" href="../dv-homepage.html">Início</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-geometria.html">Geometria</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-resistencia-calculo.html">Resistência ao Cálculo</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-flexao-simples.html">Flexão Simples</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-cisalhamento.html">Cisalhamento</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-compressão.html">Compressão Normal às Fibras</a></li>
+            <li><a class="menu" href="#same">Estabilidade Lateral de Vigas</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-ELS.html">Estado Limite de Serviço</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-explicaçao.html">Explicações</a></li>
+        </ul>
+        <br><br><br><br>
+    
+        <div id="dv-margen" style="margin-right: 17%; margin-left: 17%;">
+        
+
+            <!-- Div com breve explicação sobre a página
+                botão entendi libera o resto
+                botão não entendi redireciona para explicação mais profunda-->
+            <div id="dv-explicacao-estabilidade">
+
+                Os critérios de verificação da <strong>Estabilidade Lateral de Vigas</strong> não são definidos por norma, 
+                sendo uma verificação experimental, <strong>exceto</strong> 
+                quando se está avaliando uma viga de seção retangular com suas 
+                rotações nas seções extremas (apoios da viga) impedidas.
+                <br><br>
+                As informações necessárias nesta página são:
+                <div style="margin-left: 3%;">
+                    O comprimento.
+                </div>
+                <br><br><br>
+                
+                <table>
+                    <td>
+                        <button type="button" class="button buttoncalculo" onclick="dv_Entendi()">Entendi</button>
+                    </td>
+                    <td>
+                        <button type="button" class="button buttoncalculo" onclick="location.href='../dv-CodigosHTML/dv-explicaçao.html'">Não Entendi</button>
+                    </td>
+                </table>
+
+            </div>
+
+            <div id="dv-entrada-de-dados-estabilidade" style="display: none;">
+
+
+                <center><h2>Estabilidade Lateral de Vigas</h2></center>
+                <br><br><br>
+
+                Restrições da verificação<br>
+                Marques as caixas para continuar<br><br>
+                <form action="/action_page.php">
+                    <input type="checkbox" id="dv-condicao1" name="dv-condicao1" onclick="dv_checklist()">
+                    <label for="dv-condicao1">As rotações nas seções extremas (apoios da viga) estão impedidas</label><br>
+                    <input type="checkbox" id="dv-condicao2" name="dv-condicao2" onclick="dv_checklist()">
+                    <label for="dv-condicao2">O coeficiente de correção (βM) é calculado considerando γf = 1,4 e βE = 4</label><br>
+                </form>
+                <br><br><br><br>
+
+                <div id="dv-salvar-valores" style="display: none;">
+                
+                    <label for="dv-com-L1">Comprimento</label><br>
+                    <input type="number" id="dv-com-L1" value=""> m
+                    <br>
+                    Em dúvida?
+                    <a href="dv-explicaçao.html##Estabilidade Lateral" target="_blank">
+                        <span style="cursor:help">
+                            <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                    </a>
+                    <br><br><br><br>
+
+                    <button type="button" class="button buttoncalculo" 
+                    onclick="dv_Verificar(), dv_BM()">
+                    Salvar Valores</button>
+                    <br><br><br><br>
+
+
+                </div>
+                
+
+                <div id="dv-resposta-estabilidade" style="display: none;">
+                
+                    <button type="button" class="button buttoncalculo" onclick="dv_Estabilidade()">Verificar
+                    </button><br><br>
+                    <div id="dv-se-obliqua">
+                        <br><br>
+                        <ins id="dv-se-obliqua-resposta"></ins>
+                    </div>
+                    <div id="dv-resposta1">
+                        <br><br>
+                        <ins id="dv-est-lat"></ins><br>
+                        <ins id="dv-resultado1"></ins>
+                        <br><br><br>
+                    </div>
+                    <br><br>
+                    <div id="dv-verificacao2" style="display: none;">
+                        <button type="button" class="button buttoncalculo" onclick="dv_Estabilidade2()">Verificar
+                        </button><br><br>
+                        <div id="dv-resposta2">
+                            <br><br>
+                            <ins id="dv-est-lat-2"></ins><br>
+                            <ins id="dv-resultado2"></ins>
+                            <br><br><br>
+                        </div>
+                        <br>
+                    </div>
+
+                    <!-- Libera o PDF -->
+                    <button type="button" class="button buttoncalculo" onclick="dv_PDFEst()">Emitir PDF</button>
+                    <br><br><br><br>
+
+                    <a href="../dv-CodigosHTML/dv-ELS.html">Continue aqui</a>
+                    <br><br><br><br>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <br><br><br><br>
+        <div id="dv-rodape" class="rodape" style="display: none;">
+            <div class="row">
+                <div class="column">
+                    <b>Desenvolvido por:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/4101333847048666" target="_blank">
+                        Raquel Oliveira Azevedo
+                    </a><br>
+					<a href="http://lattes.cnpq.br/7623383075429186" target="_blank">
+						André Luis Christoforo
+					</a><br>
+                    <a href="http://lattes.cnpq.br/1986028653323442" target="_blank">
+                        Isabella Silva Menezes
+                    </a><br>
+                </div>
+				<div class="column">
+                    <b>Colaboradores:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/8465474056220474" target="_blank">
+                        Matheus Henrique Morato de Moraes
+                    </a><br>
+					<a href="http://lattes.cnpq.br/2333091200416653" target="_blank">
+						Francisco Antonio Rocco Lahr
+					</a><br>
+                    <a href="http://lattes.cnpq.br/2268506213083114" target="_blank">
+                        Wanderlei Malaquias Pereira Junior
+                    </a><br>
+                </div>
+                <div class="column">
+                    <b>Contato</b><br>
+                    <br>
+                    <a>ec.isabellasm@gmail.com</a><br>
+                    <a>raquel.azevedo@estudante.ufscar.br</a><br><br>
+                    <b>Logo</b>: Julia Sanchez Sáez
+                </div>
+                <div class="column" align="right">
+                    <b>Referência</b>
+                    <br><br>
+                    ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. ABNT NBR 7190-1: Projeto de estruturas de madeira – Parte 1: Critérios de dimensionamento. Rio de Janeiro: ABNT, 2022.
+                </div>
+            </div>
+        </div>   
+    </body>
+</html>

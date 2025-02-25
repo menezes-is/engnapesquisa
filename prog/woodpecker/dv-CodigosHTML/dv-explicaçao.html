@@ -1,0 +1,203 @@
+<!DOCTYPE html> 
+
+<html>
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../dv-style.css" media="screen"/>
+        <title>Explicações</title>
+
+    </head>
+
+    <body>
+
+        <img src="../dv-Imagens/dv-woodpecker.png" id="logoprograma" width="8%" height="8%">
+        <img src="../dv-Imagens/dv-ufclaro.png" id="logoufscar" width="10%" height="10%">
+
+        <ul>
+            <li><a class="menu" href="../dv-homepage.html">Início</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-geometria.html">Geometria</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-resistencia-calculo.html">Resistência ao Cálculo</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-flexao-simples.html">Flexão Simples</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-cisalhamento.html">Cisalhamento</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-compressão.html">Compressão Normal às Fibras</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-estabilidade.html">Estabilidade Lateral de Vigas</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-ELS.html">Estado Limite de Serviço</a></li>
+            <li><a class="menu active" href="#same">Explicações</a></li>
+        </ul>
+
+        <div style="margin-left: 17%; margin-right: 17%; text-align: justify">
+
+            <br><br><br>
+            <h2><strong>Geometria</strong><br></h2>
+            <br><br>
+
+            Vigas são elementos estruturais lineares que muitas vezes podem ser encontradas no sistema laje-viga-pilar, sendo assim, um elemento que: transmite na interface laje-viga, principalmente, forças de cisalhamento e momentos de flexão, ou forças de compressão na interface viga-pilar, como é o caso de vigas biapoiadas.
+            <br><br>
+            Dessa forma, para saber como a viga se comporta quando exposta a essas forças, é necessário conhecer suas características geométricas.
+            <br><br>
+            <strong>Tipo de Viga</strong><br>
+            <div style="margin-left: 10%; text-align: justify"><br>
+                <strong>Viga Biapoiada</strong> é uma viga que possui suas duas extremidades apenas apoiadas o que não permite a transmissão de momento para os apoios.<br><br>
+                <center><img src="../dv-Imagens/dv-5.1.png" id="dv-tipo-viga" width="35%" height="35%"></center>
+                <br><br>
+                <strong>Viga em Balanço</strong> é uma viga que possui apenas uma de suas extremidades engastadas, trasnmitindo momento, e a outra extremidade sem qualquer tipo de vinculação.
+                <center><img src="../dv-Imagens/dv-5.2.png" id="dv-tipo-viga" width="35%" height="35%"></center>
+            </div>
+            <br><br>
+            <strong>Mudança de Altura</strong><br>
+            <div style="margin-left: 10%; text-align: justify">
+                Para realisar o dimensionamento efetivo da viga, é necessário saber se ela apresenta entalhes, pois esse tipo de mudança diminui o quanto de carga a peça pode aguentar, a ponto da norma NBR 7190(2022) indicar a colocação de pinos de metais a partir de uma certa diferença de altura.<br><br>
+                <center><img src="../dv-Imagens/dv-9.png" id="dv-tipo-altura" width="55%" height="50%"></center>
+            </div>
+            <br><br>
+            <strong>Restrições</strong><br>
+            <div style="margin-left: 10%; text-align: justify">
+                Para que o dimensionamento seja efetuado, duas condições devem ser atendidas: seção transversal ou, neste caso, área, de pelo menos 5000 mm<sup>2</sup> e uma espessura, o tamanho da base, de 50 mm.
+                
+            </div>
+            <div id="#Resistência ao Calculo"></div>
+            <br><br><br>
+            <h2><strong>Resistência ao Cálculo</strong></h2>
+            <br><br><br>
+
+            A Resistência ao Cálculo é um valor utilizado como comparativo, sendo um limite genérico ao qual, a flexão, cisalhamento e compressão podem alcançar. Para determiná-la é necessário conhecer o tipo de carregamento, a classe de umidade e a classe de resistência.
+
+            <br><br>
+            <strong>Tipo de Carregamento</strong><br>
+            <div style="margin-left: 10%; text-align: justify">
+                A classe de carregamento é determinada de acordo com o tempo que a estrutura estará sofrendo uma ação considerada principal.
+            </div>
+            <br><br>
+            <center><img src="../dv-Imagens/dv-kmod1.png" width="50%" height="20%"></center>
+            <br><br>
+            <strong>Classe de Umidade</strong><br>
+            <div style="margin-left: 10%; text-align: justify">
+                O objetivo da classe de umidade é ajustar as propriedades de resistência e rigidez decorrentes das condições do ambiente na qual a árvore cresceu. Ela é dividida em 4 classes de acordo com o percentual de umidade do local.
+            </div>
+            <br><br>
+            <center><img src="../dv-Imagens/dv-kmod2.png" width="45%" height="15%"></center>
+           <br><br>
+           <strong>Classe de Resistência da Madeira</strong><br>
+           <div style="margin-left: 10%; text-align: justify">
+                A classe de resistência, é um modo de padronizar madeiras de diferentes origens, divididas entre coníferas (gimnospermas) e folhosas (angiospermas), em classes que reflitam suas propriedades determinadas por meio de experimentos. Existem duas categorias:<br>
+                <div style="margin-left: 10%; text-align: justify"><br>
+                    <strong>Corpos de Prova Isentos de Defeito </strong>(madeira nativa)<br><br>
+                    <strong>Peças Estruturais </strong>(madeira de reflorestamento)
+                </div>
+            </div>
+
+            <div id="#Flexão Simples"></div>
+            <br><br><br>
+            <h2><strong>Flexão Simples</strong></h2>
+            <br><br><br>
+
+            A flexão em vigas de madeira ocorre quando ela é submetida a um momento fletor, por ser simples não serão consideradas solicitações normais, e o corpo sofre uma curvatura de tal maneira que esforços de compressão são formados na parte superior da viga, esforços de tração na sua parte inferior e esforços cortantes na interface entre as fibras inferiores e superiores.
+            <br>Ela pode ser dividida em dois tipos:<br><br>
+
+            <div style="margin-left: 10%; text-align: justify">
+                <strong>Reta</strong> que é quando o plano de ação da força contém um eixo central de inércia.<br><br>
+                <center><img src="../dv-Imagens/dv-3.1.png" id="dv-tipo-flexao" width="25%" height="25%"></center>
+                <br><br>
+                <strong>Oblíqua</strong> que é quando o plano de ação da força não contem nenhum dos eixos centrais de inércia e necessita ser decomposta na direção de cada eixo.
+                <br><br>
+                <center><img src="../dv-Imagens/dv-3.2.png" id="dv-tipo-flexao" width="25%" height="25%"></center>
+            </div>
+
+            <div id="#Cisalhamento"></div>
+            <br><br><br>
+            <h2><strong>Cisalhamento</strong></h2>
+            <br><br><br>
+
+            O cisalhamento é o nome dado ao resultado da ação de forças cortantes que causam o deslocamento, simultâneo, do corpo em direções opostas causando uma ruptura.<br><br>
+            Além disso, caso as vigas sejam biapoiadas, pode-se aplicar um fator de correção que atenuará o efeito de forças cortantes próximo ao apoio.
+            <br><br>
+            <center><img src="../dv-Imagens/dv-7.png" id="dv-cisalh" width="50%" height="50%"></center>
+
+            <div id="#Compressão"></div>
+            <br><br><br>
+            <h2><strong>Compressão Normal às Fibras</strong></h2>
+            <br><br><br>
+            A Compressão em vigas de madeira, ocorre quando uma força concentrada é aplicada na viga, sendo, portanto, muito comum na interface pilar, ou qualquer tipo de apoio, viga.
+            <br><br>
+            Por isso, parâmetros como a extensão do carregamento se torna importante para o dimensionamento.
+            <br><br>
+            <center><img src="../dv-Imagens/dv-1.png" id="dv-fletor-obliqua" width="25%" height="30%">
+            </center>
+
+            <div id="#Estabilidade Lateral"></div>
+            <br><br><br>
+            <h2><strong>Estabilidade Lateral de Vigas</strong></h2>
+            <br><br><br>
+
+            Os critérios de verificação da instabilidade lateral de vigas não são definidos por norma, sendo uma verificação experimental, podendo ser dispensada em 3 situações:<br><br>
+            <div style="margin-left: 10%; text-align: justify">
+                Quando se está avaliando uma viga de seção retangular com suas rotações nas seções extremas (apoios da viga) impedidas.
+                <br><br>
+                Quando a distância entre pontos adjacentes da borda comprimida com deslocamentos laterais impedidos atende uma condição que pode ser calculada.
+                <br><br>
+                Ou, caso a condição acima não seja atendida, pode-se realizar também uma segunda verificação dependente do máximo valor de cálculo da tensão.
+            </div>
+
+            <div id="#Estado Limite de Serviço"></div>
+            <br><br><br>
+            <h2><strong>Estado Limite de Serviço</strong></h2>
+            <br><br><br>
+
+            O Estado de Limite de Serviço, também chamado de Estado Limite de Utilização, é uma verificação de segurança que analisa se há comprometimento na durabilidade, utilidade ou estética de uma estrutura.
+            <br><br>
+            Para a verificação dos Estados Limites de Serviço, deve-se calcular o deslocamento ou a vibração aos quais a peça pode estar sujeita e em seguida verificar se o número obtido está abaixo dos limites estabelecidos, que são determinados pela divisão da largura da peça por um número pré-determinado de acordo com a situação.
+            <br><br>
+            Esses deslocamentos ou vibrações acontecem devido aos efeitos de ações que podem possuir um caráter permanente ou passageiro, chamado de variável, e são demonstrados por flechas que correspondem ao quanto a estrutura se deslocou devido à aquela ação. 
+            <br><br>
+            Em relações aos Estados Limites de Vibração, as construções devem ser feitas de modo a evitar vibrações excessivas na estrutura, no caso de pisos sobre os quais pessoas andem regularmente. A frequência natural de vibração dos elementos da estrutura não deve ser inferior a 8 Hz.
+
+        </div>
+        <br><br><br><br><br><br><br><br><br><br>
+        <div id="dv-rodape" class="rodape" style="bottom: 0">
+            <div class="row">
+                <div class="column">
+                    <b>Desenvolvido por:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/4101333847048666" target="_blank">
+                        Raquel Oliveira Azevedo
+                    </a><br>
+					<a href="http://lattes.cnpq.br/7623383075429186" target="_blank">
+						André Luis Christoforo
+					</a><br>
+                    <a href="http://lattes.cnpq.br/1986028653323442" target="_blank">
+                        Isabella Silva Menezes
+                    </a><br>
+                </div>
+				<div class="column">
+                    <b>Colaboradores:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/8465474056220474" target="_blank">
+                        Matheus Henrique Morato de Moraes
+                    </a><br>
+					<a href="http://lattes.cnpq.br/2333091200416653" target="_blank">
+						Francisco Antonio Rocco Lahr
+					</a><br>
+                    <a href="http://lattes.cnpq.br/2268506213083114" target="_blank">
+                        Wanderlei Malaquias Pereira Junior
+                    </a><br>
+                </div>
+                <div class="column">
+                    <b>Contato</b><br>
+                    <br>                    
+                    <a>ec.isabellasm@gmail.com</a><br>
+                    <a>raquel.azevedo@estudante.ufscar.br</a><br><br>
+                    <b>Logo</b>: Julia Sanchez Sáez
+                </div>
+                <div class="column" align="right">
+                    <b>Referência</b>
+                    <br><br>
+                    ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. ABNT NBR 7190-1: Projeto de estruturas de madeira – Parte 1: Critérios de dimensionamento. Rio de Janeiro: ABNT, 2022.
+                </div>
+            </div>
+        </div>
+
+        
+    </body>
+    
+</html>

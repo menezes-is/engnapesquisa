@@ -1,0 +1,238 @@
+<!DOCTYPE html> 
+
+<html>
+    <script src="../dv-CodigosJS/dv-fELS.js"></script>
+    <script src="../pdfmake.min.js"></script>
+    <script src="../vfs_fonts.js"></script>
+
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../dv-style.css" media="screen"/>
+        <title>Estado Limite de Serviço</title>
+
+    </head>
+
+    <body>
+
+        <img src="../dv-Imagens/dv-woodpecker.png" id="logoprograma" width="8%" height="8%">
+        <img src="../dv-Imagens/dv-ufclaro.png" id="logoufscar" width="10%" height="10%">
+
+        <ul>
+            <li><a class="menu" href="../dv-homepage.html">Início</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-geometria.html">Geometria</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-resistencia-calculo.html">Resistência ao Cálculo</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-flexao-simples.html">Flexão Simples</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-cisalhamento.html">Cisalhamento</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-compressão.html">Compressão Normal às Fibras</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-estabilidade.html">Estabilidade Lateral de Vigas</a></li>
+            <li><a class="menu active" href="#same">Estado Limite de Serviço</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-explicaçao.html">Explicações</a></li>
+        </ul>
+        <br><br><br><br>
+
+        <div style="margin-right: 17%; margin-left: 17%;">
+        
+            <div id="dv-explicacao-servico">
+
+                O <strong>Estado Limite de Serviço</strong> é o parâmentro que define se a estrutura atende os critérios de durabilidade, aparência, conforto e utilização funcional de maneira adequada.
+                <br><br>
+                As informações necessárias nesta página são:<br>
+                <div style="margin-left: 3%;">
+                    No caso de flexão reta é necessário apenas o valor das flechas instantânea e final.<br>
+                    Na flexão olbiqua é necessario uma flecha de cada para o eixo x e para o eixo y.
+                </div>
+                <br>
+                As contas realizadas nessa página são baseadas nas informações dadas anteriormente
+                nas outras páginas.
+
+                <br><br><br><br>
+                <table>
+                    <td>
+                        <button type="button" class="button buttoncalculo" onclick="dv_Entendi()">Entendi</button>
+                    </td>
+                    <td>
+                        <button type="button" class="button buttoncalculo" onclick="location.href='../dv-CodigosHTML/dv-explicaçao.html'">Não Entendi</button>
+                    </td>
+                </table>
+
+
+            </div>
+
+            <div id="dv-entrada-de-dados-servico" style="display: none;">
+
+                <center><h2>Estado Limite de Serviço</h2></center>
+                <br><br><br><br>
+
+                <div id="dv-flexao-reta" style="display: none;">
+
+                    <label for="dv-flechai">Flecha instantânea</label><br>
+                    <input type="number" id="dv-flechai" value=""> mm<br>
+                    Em dúvida?
+                    <a href="dv-explicaçao.html##Estado Limite de Serviço" target="_blank">
+                        <span style="cursor:help">
+                            <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                    </a>
+                    <br><br><br><br>
+
+                    
+                    <label for="dv-flechaf">Flecha final</label><br>
+                    <input type="number" id="dv-flechaf" value=""> mm<br>
+                    Em dúvida?
+                    <a href="dv-explicaçao.html##Estado Limite de Serviço" target="_blank">
+                        <span style="cursor:help">
+                            <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                    </a>
+                    <br><br><br><br>
+
+                </div>
+
+
+                <div id="dv-flexao-obliqua" style="display: none;">
+
+                    <table><!-- Tabela com os dois valores possíveis de flecha -->
+                        <tr>
+                            <th><label for="dv-flechai-x">Flecha instantânea em x</label></th>
+                            <th><label for="dv-flechai-y">Flecha instantânea em y</label></th>
+                        </tr>
+    
+                        <td>
+                            <input type="number" id="dv-flechai-x" name="dv-flechai-x" value=""> mm<br>
+                            Em dúvida?
+                            <a href="dv-explicaçao.html##Estado Limite de Serviço" target="_blank">
+                                <span style="cursor:help">
+                                    <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <input type="number" id="dv-flechai-y" name="dv-flechai-y" value=""> mm<br>
+                            Em dúvida?
+                            <a href="dv-explicaçao.html##Estado Limite de Serviço" target="_blank">
+                                <span style="cursor:help">
+                                    <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                            </a>
+                        </td>
+                    </table>
+                    <br><br><br><br>
+
+                    <table><!-- Tabela com as flechas em ambas posições -->
+                        <tr>
+                            <th><label for="dv-flechaf-x">Flecha final em x</label></th>
+                            <th><label for="dv-flechaf-y">Flecha final em y</label></th>
+                        </tr>
+    
+                        <td>
+                            <input type="number" id="dv-flechaf-x" name="dv-flechaf-x" value=""> mm<br>
+                            Em dúvida?
+                            <a href="dv-explicaçao.html##Estado Limite de Serviço" target="_blank">
+                                <span style="cursor:help">
+                                    <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <input type="number" id="dv-flechaf-y" name="dv-flechaf-y" value=""> mm<br>
+                            Em dúvida?
+                            <a href="dv-explicaçao.html##Estado Limite de Serviço" target="_blank">
+                                <span style="cursor:help">
+                                    <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                            </a>
+                        </td>
+                    </table>
+                    <br><br><br><br>
+                </div>
+
+                <button type="button" class="button buttoncalculo" onclick="dv_SalvarValores(), dv_Fluencia()">Salvar Valores</button>
+                <br><br><br><br>
+
+            </div>
+
+            <div id="dv-calculos-ELS" style="display: none;">
+            
+                O programa não considera a presença de materiais frágeis ligados à estrutura.
+                <br><br>
+                A frequência natural de vibração dos elementos da estrutura do piso não pode ser inferior a 8Hz.
+                <br><br><br><br>
+
+                <button type="button" class="button buttoncalculo" onclick="dv_Verificar()">Verificar</button>
+                <br><br>
+
+                    <div id="resposta-els-reta" style="display: none;">
+                        <br>
+
+                        <ins id="dv-els-res1"></ins><br>
+                        <ins id="dv-els-res2"></ins><br>
+                        <ins id="dv-res-ELS"></ins>
+                        <br><br>
+
+                    </div>
+                    <div id="resposta-els-obl" style="display: none;">
+                        <br>
+                        <ins id="dv-els-res3"></ins><br>
+                        <ins id="dv-els-res4"></ins><br>
+                        <ins id="dv-els-res5"></ins><br>
+                        <ins id="dv-els-res6"></ins><br>
+                        <ins id="dv-res-ELS-obl"></ins>
+                        <br><br>
+
+                    </div>
+                <!-- Libera o PDF com as contas -->
+                <br><br>
+                <button type="button" class="button buttoncalculo" onclick="dv_PDFELS()">Emitir PDF</button>
+                <br><br><br><br>
+    
+                <a href="../dv-homepage.html">Continue aqui</a>
+                <br><br><br><br>
+                </div>
+
+            </div>
+
+            </div>
+
+        </div>
+
+        <div id="dv-rodape" class="rodape" style="display: none;">
+            <div class="row">
+                <div class="column">
+                    <b>Desenvolvido por:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/4101333847048666" target="_blank">
+                        Raquel Oliveira Azevedo
+                    </a><br>
+					<a href="http://lattes.cnpq.br/7623383075429186" target="_blank">
+						André Luis Christoforo
+					</a><br>
+                    <a href="http://lattes.cnpq.br/1986028653323442" target="_blank">
+                        Isabella Silva Menezes
+                    </a><br>
+                </div>
+				<div class="column">
+                    <b>Colaboradores:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/8465474056220474" target="_blank">
+                        Matheus Henrique Morato de Moraes
+                    </a><br>
+					<a href="http://lattes.cnpq.br/2333091200416653" target="_blank">
+						Francisco Antonio Rocco Lahr
+					</a><br>
+                    <a href="http://lattes.cnpq.br/2268506213083114" target="_blank">
+                        Wanderlei Malaquias Pereira Junior
+                    </a><br>
+                </div>
+                <div class="column">
+                    <b>Contato</b><br>
+                    <br>
+                    <a>ec.isabellasm@gmail.com</a><br>
+                    <a>raquel.azevedo@estudante.ufscar.br</a><br><br>
+                    <b>Logo</b>: Julia Sanchez Sáez
+                </div>
+                <div class="column" align="right">
+                    <b>Referência</b>
+                    <br><br>
+                    ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. ABNT NBR 7190-1: Projeto de estruturas de madeira – Parte 1: Critérios de dimensionamento. Rio de Janeiro: ABNT, 2022.
+                </div>
+            </div>
+        </div>
+
+    </body>
+    
+</html>

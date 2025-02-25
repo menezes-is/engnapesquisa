@@ -1,0 +1,1097 @@
+// CONSTANTE PARA ESCOLHER QUAL TIPO DE CLASSE DE RESISTÊNCIA
+const dp_escolher_classe = () => {
+
+    sel = document.getElementById("dp_res")
+    a = sel.options[sel.selectedIndex].value
+    if (sel.options[sel.selectedIndex].value == "dp_res_1"){
+        dp_desativar_classe()
+        document.querySelector(".nome1").classList.add("ativo") 
+    }
+
+    if (sel.options[sel.selectedIndex].value == "dp_res_2"){
+        dp_desativar_classe()
+        document.querySelector(".nome2").classList.add("ativo") 
+    }
+
+    if (sel.options[sel.selectedIndex].value == "dp_res_3"){
+        dp_desativar_classe()
+        document.querySelector(".nome3").classList.add("ativo") 
+    }
+}
+
+// CONSTANTE PARA DESATIVAR AS OUTRAS DUAS CLASSES QUANDO UMA FOR ESCOLHIDA
+const dp_desativar_classe = () => {
+    
+    console.log(document.querySelector(".ativo").classList)
+    document.querySelector(".ativo").classList.remove("ativo")
+
+}
+
+// FUNÇÃO PARA ESCOLHER O TIPO DE ESFORÇO SOLICITANTE (COMPRESSÃO SIMPLES OU FLEXOCOMPRESSÃO)
+const dp_escolher_classe2 = () => {
+
+    sel2 = document.getElementById("dp_casa")
+    sel2.options[sel2.selectedIndex].value
+    if (sel2.options[sel2.selectedIndex].value == "dp_casa_1"){
+        dp_desativar_classe2()
+        document.querySelector(".escolha1").classList.add("active1") 
+    }
+
+    else if (sel2.options[sel2.selectedIndex].value == "dp_casa_2"){
+        dp_desativar_classe2()
+        document.querySelector(".escolha2").classList.add("active1") 
+    }
+}
+
+// CONSTANTE PARA DESATIVAR AS OUTRAS DUAS CLASSES QUANDO UMA FOR ESCOLHIDA
+const dp_desativar_classe2 = () => {
+    document.querySelector(".active1").classList.remove("active1")
+
+}
+
+// FUNÇÃO DO CÁLCULO DA ÁREA
+dp_area = 0
+function dp_farea(){
+    dp_b_e = document.getElementById("dp_base").value
+    dp_b_e = Number(dp_b_e)
+    dp_h_e = document.getElementById("dp_altura").value
+    dp_h_e = Number(dp_h_e)
+    dp_L_e = document.getElementById("dp_vao").value
+    dp_L_e = Number(dp_L_e)
+    dp_area_e = dp_b_e*dp_h_e
+    dp_area_e = Number(dp_area_e)
+	sel=document.getElementById("dp_unidade");
+    dp_unidade = sel.options[sel.selectedIndex].value;
+
+    document.getElementById("dp_area_e").disabled = false;
+    document.getElementById("dp_area_e").value = dp_area_e.toFixed(3);
+    document.getElementById("dp_area_e").disabled = true;
+	
+//ÁREA MÍNIMA
+erropropgeo=0;	
+	if(dp_unidade == 1){ //mm para mm
+		if (dp_area_e<5000){
+        alert("ÁREA DA SEÇÃO MENOR DO QUE A ÁREA MÍNIMA PERMITIDA! ALTERE AS DIMENSÕES DA SEÇÃO TRANSVERSAL E CALCULE NOVAMENTE.")
+		erropropgeo=1;
+		}
+
+		if (dp_b_e<50){
+        alert("VALOR DE BASE MENOR DO QUE O MÍNIMO PERMITIDO! ALTERE O VALOR DA BASE DA SEÇÃO TRANSVERSAL E CALCULE NOVAMENTE.")
+		erropropgeo=1;
+		}
+    }
+	
+    if(dp_unidade == 2){ //cm para mm
+        if (dp_area_e<50){
+        alert("ÁREA DA SEÇÃO MENOR DO QUE A ÁREA MÍNIMA PERMITIDA! ALTERE AS DIMENSÕES DA SEÇÃO TRANSVERSAL E CALCULE NOVAMENTE.")
+		erropropgeo=1;
+		}
+
+		if (dp_b_e<5){
+        alert("VALOR DE BASE MENOR DO QUE O MÍNIMO PERMITIDO! ALTERE O VALOR DA BASE DA SEÇÃO TRANSVERSAL E CALCULE NOVAMENTE.")
+		erropropgeo=1;
+		}
+    }
+	
+    if(dp_unidade == 3){ //m para mm
+        if (dp_area_e<0.005){
+        alert("ÁREA DA SEÇÃO MENOR DO QUE A ÁREA MÍNIMA PERMITIDA! ALTERE AS DIMENSÕES DA SEÇÃO TRANSVERSAL E CALCULE NOVAMENTE.")
+		erropropgeo=1;
+    }
+
+    if (dp_b_e<0.05){
+        alert("VALOR DE BASE MENOR DO QUE O MÍNIMO PERMITIDO! ALTERE O VALOR DA BASE DA SEÇÃO TRANSVERSAL E CALCULE NOVAMENTE.")
+		erropropgeo=1;
+    }
+    }
+}
+
+// FUNÇÃO DO CÁLCULO DO MOMENTO DE INERCIA NO EIXO X
+function dp_momento_x(){
+    dp_momentox_e = dp_b_e*Math.pow(dp_h_e,3)/12
+
+    document.getElementById("dp_momentox_e").disabled = false;
+    document.getElementById("dp_momentox_e").value = dp_momentox_e.toFixed(3);
+    document.getElementById("dp_momentox_e").disabled = true;
+}
+
+// FUNÇÃO DO CÁLCULO DO MOMENTO DE INERCIA NO EIXO Y
+function dp_momento_y(){
+    dp_momentoy_e = dp_h_e*Math.pow(dp_b_e,3)/12
+    
+    document.getElementById("dp_momentoy_e").disabled = false;
+    document.getElementById("dp_momentoy_e").value = dp_momentoy_e.toFixed(3);
+    document.getElementById("dp_momentoy_e").disabled = true;
+}
+
+// FUNÇÃO DE CÁLCULO DO MÓDULO DE RESISTENCIA EM X
+function dp_mod_res_x(){
+    dp_mod_x_e = (dp_b_e*Math.pow(dp_h_e,2))/6
+
+    document.getElementById("dp_mod_x_e").disabled = false;
+    document.getElementById("dp_mod_x_e").value = dp_mod_x_e.toFixed(3);
+    document.getElementById("dp_mod_x_e").disabled = true;
+}
+
+// FUNÇÃO DE CÁLCULO DO MÓDULO DE RESISTENCIA EM X
+function dp_mod_res_y(){
+    dp_mod_y_e = (dp_h_e*Math.pow(dp_b_e,2))/6
+
+    document.getElementById("dp_mod_y_e").disabled = false;
+    document.getElementById("dp_mod_y_e").value = dp_mod_y_e.toFixed(3);
+    document.getElementById("dp_mod_y_e").disabled = true;
+}
+
+// FUNÇÃO DE EXPANDIR A DIV DE RESULTADOS DA PROPRIEDADE GEOMÉTRICA
+function expandir_result_propgeo(){
+    
+	if(erropropgeo==0){
+    dp_valor_unid();
+    document.getElementById("resultado_prop_geo").style.display = "block";
+	}
+}
+
+// FUNÇÃO DE CONVERSÃO DE UNIDADE PARA MM
+function dp_unidade_mm(){
+    sel=document.getElementById("dp_unidade");
+    dp_unidade = sel.options[sel.selectedIndex].value;
+    
+    if(dp_unidade == 1){ //mm para mm
+        dp_unidmm = 1;
+    }
+    if(dp_unidade == 2){ //cm para mm
+        dp_unidmm = 10;
+    }
+    if(dp_unidade == 3){ //m para mm
+        dp_unidmm = 1000;
+    }
+}
+
+// FUNÇÃO DE CORREÇÃO DOS DADOS GEOMÉTRICOS INSERIDOS
+function dp_corrigir_dados_mm(){
+    dp_unidade_mm();
+    dp_h = dp_h_e*dp_unidmm;
+    dp_b = dp_b_e*dp_unidmm;
+    dp_L = dp_L_e*dp_unidmm;
+
+    dp_area = dp_b*dp_h //area
+    dp_momentox = dp_b*Math.pow(dp_h,3)/12 //momento de inercia em x
+    dp_momentoy = dp_h*Math.pow(dp_b,3)/12 //momento de inercia em y
+    dp_mod_x = (dp_b*Math.pow(dp_h,2))/6 //modulo de resistencia em x
+    dp_mod_y = (dp_h*Math.pow(dp_b,2))/6 //modulo de resistencia em y
+	
+}
+
+// FUNÇÃO DE VALOR DA UNIDADE DE ENTRADA
+function dp_valor_unid(){
+    sel=document.getElementById("dp_unidade");
+    dp_unidade=sel.options[sel.selectedIndex].value;
+
+    if (dp_unidade == 1){
+        dp_unid_text = "mm";
+    }
+    if (dp_unidade == 2){
+        dp_unid_text = "cm";
+    }
+    if (dp_unidade == 3){
+        dp_unid_text = "m";
+    }
+
+    document.getElementById("dp_unid_text").innerHTML = dp_unid_text
+    document.getElementById("dp_unid_text1").innerHTML = dp_unid_text
+    document.getElementById("dp_unid_text2").innerHTML = dp_unid_text
+    document.getElementById("dp_unid_text3").innerHTML = dp_unid_text
+    document.getElementById("dp_unid_text4").innerHTML = dp_unid_text
+}
+
+// FUNÇÃO DE EXPANDIR A DIV DE RESULTADOS DA CLASSE DE RESISTÊNCIA
+function expandir_result_rescal(){
+    if (dp_alert1 == 1 || dp_kmod2 == 11 || dp_fc0k == 5000 ){}
+
+    else if(dp_alert1 != 1 || dp_kmod2 != 11 || dp_fc0k != 5000){
+        document.getElementById("resultado_res_cal").style.display = "block";
+    }
+
+}
+
+// CHAMA A FUNÇÃO DE DP_ESCOLHER_CLASSE DE RESISTÊNCIA QUANDO CLICA NO BOTÃO ESCOLHER
+document.querySelector("#botao").addEventListener("click",dp_escolher_classe)
+
+// CHAMA A FUNÇÃO DP_FAREA, DP_MOMENTO_X E DP_MOMENTO_Y QUANDO CLICA NO BOTÃO CALCULAR
+document.querySelector("#calcular").addEventListener("click",dp_farea)
+document.querySelector("#calcular").addEventListener("click",dp_momento_x)
+document.querySelector("#calcular").addEventListener("click",dp_momento_y)
+document.querySelector("#calcular").addEventListener("click",dp_mod_res_x)
+document.querySelector("#calcular").addEventListener("click",dp_mod_res_y)
+document.querySelector("#calcular").addEventListener("click",expandir_result_propgeo)
+document.querySelector("#calcular").addEventListener("click",dp_corrigir_dados_mm)
+
+
+// Get the button that opens the modal
+var btn = document.querySelectorAll("button.dp_modal");
+
+// All page modals
+var modals = document.querySelectorAll('.modal');
+
+// Get the <span> element that closes the modal
+var spans = document.getElementsByClassName("close");
+
+// When the user clicks the button, open the modal
+for (var i = 0; i < btn.length; i++) {
+ btn[i].onclick = function(e) {
+    e.preventDefault();
+    modal = document.querySelector(e.target.getAttribute("href"));
+    modal.style.display = "block";
+ }
+}
+
+// When the user clicks on <span> (x), close the modal
+for (var i = 0; i < spans.length; i++) {
+ spans[i].onclick = function() {
+    for (var index in modals) {
+      if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+    }
+ }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+     for (var index in modals) {
+      if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+     }
+    }
+}
+
+dp_alert1 = 1
+// DEFININDO KMOD1 - CLASSE DE CARREGAMENTO
+function dp_classe_carregamento(){
+    
+	if(erropropgeo==1){
+	alert("ÁREA E/OU ESPESSURA MENOR QUE O MÍNIMO PERMITIDO, ALTERE OS VALORES PARA CONTINUAR")
+	return;
+	}
+	
+	
+	dp_clas_car = document.getElementById("dp_carregamento").value;
+    dp_clas_car = Number(dp_clas_car);
+
+    if (dp_clas_car == 1){
+        dp_kmod1 = 0.6;
+        dp_alert1 = 2;   
+    }
+
+    else if (dp_clas_car == 2){
+        dp_kmod1 = 0.7;
+        dp_alert1 = 2;
+    }
+
+    else if (dp_clas_car == 3){
+        dp_kmod1 = 0.8;
+        dp_alert1 = 2;
+    }
+
+    else if (dp_clas_car == 4){
+        dp_kmod1 = 0.9;
+        dp_alert1 = 2;
+    }
+
+    else if (dp_clas_car == 5){
+        dp_kmod1 = 1.1;
+        dp_alert1 = 2;
+    }
+
+    else {
+        alert("ERRO! CLASSE DE CARREGAMENTO NÃO SELECIONADA");
+    }
+}
+
+dp_kmod2 = 11
+// DEFININDO KMOD2 - CLASSE DE UMIDADE
+function dp_classe_umidade(){
+
+    if(document.getElementById("dp_classe1").checked){
+        dp_kmod2 = 1
+    }
+
+    else if(document.getElementById("dp_classe2").checked){
+        dp_kmod2 = 0.9
+    }
+
+    else if(document.getElementById("dp_classe3").checked){
+        dp_kmod2 = 0.8
+    }
+
+    else if(document.getElementById("dp_classe4").checked){
+        dp_kmod2 = 0.7
+    }
+
+    else if (dp_kmod2 == 11) {
+        alert("ERRO! CLASSE DE UMIDADE NÃO ESCOLHIDA")
+
+    }
+}
+
+dp_fc0k = 5000 
+// DEFININDO VALORES DAS CLASSES DE RESISTENCIA
+function dp_classe_res_1(){
+// VALOR DE FCK PARA CRIAR ALERTA SE UM CAMPO NÃO FOR SELECIONADO
+    
+    // CRIANDO IF PARA SÓ PEGAR ESSES VALORES SE A CLASSE ESTIVER ATIVA
+    if (document.querySelector(".nome1").classList.contains("ativo")){ 
+        if(document.getElementById("dp_1res1").checked){
+            dp_fc0k = 20 
+            dp_fv0 = 4 
+            dp_Ec0 = 10000
+            dp_densidade = 500
+            dp_Ec005 = 0.7*dp_Ec0
+            dp_fmk = dp_fc0k
+        }
+
+        else if(document.getElementById("dp_1res2").checked){
+            dp_fc0k = 30
+            dp_fv0 = 5
+            dp_Ec0 = 12000
+            dp_densidade = 625
+            dp_Ec005 = 0.7*dp_Ec0
+            dp_fmk = dp_fc0k
+        }
+
+        else if(document.getElementById("dp_1res3").checked){
+            dp_fc0k = 40
+            dp_fv0 = 6
+            dp_Ec0 = 14500
+            dp_densidade = 750
+            dp_Ec005 = 0.7*dp_Ec0
+            dp_fmk = dp_fc0k
+        }
+
+        else if(document.getElementById("dp_1res4").checked){
+            dp_fc0k = 50
+            dp_fv0 = 7
+            dp_Ec0 = 16500
+            dp_densidade = 850
+            dp_Ec005 = 0.7*dp_Ec0
+            dp_fmk = dp_fc0k
+        }
+
+        else if(document.getElementById("dp_1res5").checked){
+            dp_fc0k = 60
+            dp_fv0 = 8
+            dp_Ec0 = 19500
+            dp_densidade = 1000
+            dp_Ec005 = 0.7*dp_Ec0
+            dp_fmk = dp_fc0k
+        }
+
+        else if (dp_fc0k == 5000){
+            alert("ERRO! CLASSE DE RESISTÊNCIA NÃO SELECIONADA")
+        }
+    }
+    
+    // CRIANDO IF PARA SÓ PEGAR ESSES VALORES SE A CLASSE ESTIVER ATIVA
+    if (document.querySelector(".nome2").classList.contains("ativo")){
+        if(document.getElementById("dp_2res1").checked){
+            dp_fc0k = 16
+            dp_fv0 = 3
+            dp_Ec0 = 7000
+            dp_densidade = 290
+            
+            dp_fmk = 14
+            dp_t0k = 8
+            dp_t90k = 0.4
+            dp_c90k = 2
+            dp_Ec005 = 4700
+            dp_Ec90m = 200
+            dp_Gm = 400
+            dp_densidade_m = 350
+        }
+
+        else if(document.getElementById("dp_2res2").checked){
+            dp_fc0k = 17
+            dp_fv0 = 3.2
+            dp_Ec0 = 8000
+            dp_densidade = 310
+            
+            dp_fmk = 16
+            dp_t0k = 10
+            dp_t90k = 0.4
+            dp_c90k = 2.2
+            dp_Ec005 = 5400
+            dp_Ec90m = 300
+            dp_Gm = 500
+            dp_densidade_m = 370
+        }
+
+        else if(document.getElementById("dp_2res3").checked){
+            dp_fc0k = 18
+            dp_fv0 = 3.4
+            dp_Ec0 = 9000
+            dp_densidade = 320
+            
+            dp_fmk = 18
+            dp_t0k = 11
+            dp_t90k = 0.4
+            dp_c90k = 2.2
+            dp_Ec005 = 6000
+            dp_Ec90m = 300
+            dp_Gm = 600
+            dp_densidade_m = 380
+        }
+
+        else if(document.getElementById("dp_2res4").checked){
+            dp_fc0k = 19
+            dp_fv0 = 3.6
+            dp_Ec0 = 9500
+            dp_densidade = 330
+            
+            dp_fmk = 20
+            dp_t0k = 12
+            dp_t90k = 0.4
+            dp_c90k = 2.3
+            dp_Ec005 = 6400
+            dp_Ec90m = 300
+            dp_Gm = 600
+            dp_densidade_m = 390
+        }
+
+        else if(document.getElementById("dp_2res5").checked){
+            dp_fc0k = 20
+            dp_fv0 = 3.8
+            dp_Ec0 = 10000
+            dp_densidade = 340
+            
+            dp_fmk = 22
+            dp_t0k = 13
+            dp_t90k = 0.4
+            dp_c90k = 2.4
+            dp_Ec005 = 6700
+            dp_Ec90m = 300
+            dp_Gm = 600
+            dp_densidade_m = 410
+        }
+
+        else if(document.getElementById("dp_2res6").checked){
+            dp_fc0k = 21
+            dp_fv0 = 4
+            dp_Ec0 = 11000
+            dp_densidade = 350
+            
+            dp_fmk = 24
+            dp_t0k = 14
+            dp_t90k = 0.4
+            dp_c90k = 2.5
+            dp_Ec005 = 7400
+            dp_Ec90m = 400
+            dp_Gm = 700
+            dp_densidade_m = 420
+        }
+
+        else if(document.getElementById("dp_2res7").checked){
+            dp_fc0k = 22
+            dp_fv0 = 4
+            dp_Ec0 = 12000
+            dp_densidade = 370
+            
+            dp_fmk = 27
+            dp_t0k = 16
+            dp_t90k = 0.4
+            dp_c90k = 2.6
+            dp_Ec005 = 7700
+            dp_Ec90m = 400
+            dp_Gm = 700
+            dp_densidade_m = 450
+        }
+
+        else if(document.getElementById("dp_2res8").checked){
+            dp_fc0k = 23
+            dp_fv0 = 4
+            dp_Ec0 = 12000
+            dp_densidade = 380
+            
+            dp_fmk = 30
+            dp_t0k = 18
+            dp_t90k = 0.4
+            dp_c90k = 2.7
+            dp_Ec005 = 8000
+            dp_Ec90m = 400
+            dp_Gm = 800
+            dp_densidade_m = 460
+        }
+
+        else if(document.getElementById("dp_2res9").checked){
+            dp_fc0k = 25
+            dp_fv0 = 4
+            dp_Ec0 = 13000
+            dp_densidade = 400
+            
+            dp_fmk = 35
+            dp_t0k = 21
+            dp_t90k = 0.4
+            dp_c90k = 2.8
+            dp_Ec005 = 8700
+            dp_Ec90m = 400
+            dp_Gm = 800
+            dp_densidade_m = 480
+        }
+
+        else if(document.getElementById("dp_2res10").checked){
+            dp_fc0k = 26
+            dp_fv0 = 4
+            dp_Ec0 = 14000
+            dp_densidade = 420
+            
+            dp_fmk = 40
+            dp_t0k = 24
+            dp_t90k = 0.4
+            dp_c90k = 2.9
+            dp_Ec005 = 9400
+            dp_Ec90m = 500
+            dp_Gm = 900
+            dp_densidade_m = 500
+        }
+
+        else if(document.getElementById("dp_2res11").checked){
+            dp_fc0k = 27
+            dp_fv0 = 4
+            dp_Ec0 = 15000
+            dp_densidade = 440
+            
+            dp_fmk = 45
+            dp_t0k = 27
+            dp_t90k = 0.4
+            dp_c90k = 3.1
+            dp_Ec005 = 10000
+            dp_Ec90m = 500
+            dp_Gm = 900
+            dp_densidade_m = 520
+        }
+
+        else if(document.getElementById("dp_2res12").checked){
+            dp_fc0k = 29
+            dp_fv0 = 4
+            dp_Ec0 = 16000
+            dp_densidade = 460
+            
+            dp_fmk = 50
+            dp_t0k = 30
+            dp_t90k = 0.4
+            dp_c90k = 3.2
+            dp_Ec005 = 11000
+            dp_Ec90m = 500
+            dp_Gm = 1000
+            dp_densidade_m = 550
+        }
+
+        else if(document.getElementById("dp_2res13").checked){
+            dp_fc0k = 18
+            dp_fv0 = 3.4
+            dp_Ec0 = 9500
+            dp_densidade = 475
+            
+            dp_fmk = 18
+            dp_t0k = 11
+            dp_t90k = 0.6
+            dp_c90k = 7.5
+            dp_Ec005 = 8000
+            dp_Ec90m = 600
+            dp_Gm = 600
+            dp_densidade_m = 570
+        }
+
+        else if(document.getElementById("dp_2res14").checked){
+            dp_fc0k = 21
+            dp_fv0 = 4
+            dp_Ec0 = 10000
+            dp_densidade = 485
+            
+            dp_fmk = 24
+            dp_t0k = 14
+            dp_t90k = 0.6
+            dp_c90k = 7.8
+            dp_Ec005 = 8500
+            dp_Ec90m = 700
+            dp_Gm = 600
+            dp_densidade_m = 580
+        }
+
+        else if(document.getElementById("dp_2res15").checked){
+            dp_fc0k = 23
+            dp_fv0 = 4
+            dp_Ec0 = 11000
+            dp_densidade = 530
+            
+            dp_fmk = 30
+            dp_t0k = 18
+            dp_t90k = 0.6
+            dp_c90k = 8
+            dp_Ec005 = 9200
+            dp_Ec90m = 700
+            dp_Gm = 700
+            dp_densidade_m = 640
+        }
+
+        else if(document.getElementById("dp_2res16").checked){
+            dp_fc0k = 25
+            dp_fv0 = 4
+            dp_Ec0 = 12000
+            dp_densidade = 540
+            
+            dp_fmk = 35
+            dp_t0k = 21
+            dp_t90k = 0.6
+            dp_c90k = 8.1
+            dp_Ec005 = 10000
+            dp_Ec90m = 800
+            dp_Gm = 800
+            dp_densidade_m = 650
+        }
+
+        else if(document.getElementById("dp_2res17").checked){
+            dp_fc0k = 26
+            dp_fv0 = 4
+            dp_Ec0 = 13000
+            dp_densidade = 560
+            
+            dp_fmk = 40
+            dp_t0k = 24
+            dp_t90k = 0.6
+            dp_c90k = 8.3
+            dp_Ec005 = 11000
+            dp_Ec90m = 900
+            dp_Gm = 800
+            dp_densidade_m = 660
+        }
+
+        else if(document.getElementById("dp_2res18").checked){
+            dp_fc0k = 29
+            dp_fv0 = 4
+            dp_Ec0 = 14000
+            dp_densidade = 620
+            
+            dp_fmk = 50
+            dp_t0k = 30
+            dp_t90k = 0.6
+            dp_c90k = 9.3
+            dp_Ec005 = 12000
+            dp_Ec90m = 900
+            dp_Gm = 900
+            dp_densidade_m = 750
+        }
+
+        else if(document.getElementById("dp_2res19").checked){
+            dp_fc0k = 32
+            dp_fv0 = 4.5
+            dp_Ec0 = 17000
+            dp_densidade = 700
+            
+            dp_fmk = 60
+            dp_t0k = 36
+            dp_t90k = 0.6
+            dp_c90k = 11
+            dp_Ec005 = 14000
+            dp_Ec90m = 1100
+            dp_Gm = 1100
+            dp_densidade_m = 840
+        }
+
+        else if(document.getElementById("dp_2res20").checked){
+            dp_fc0k = 34
+            dp_fv0 = 5
+            dp_Ec0 = 20000
+            dp_densidade = 900
+            
+            dp_fmk = 70
+            dp_t0k = 42
+            dp_t90k = 0.6
+            dp_c90k = 13.5
+            dp_Ec005 = 16800
+            dp_Ec90m = 1330
+            dp_Gm = 1250
+            dp_densidade_m = 1080
+        }
+
+        else if (dp_fc0k == 5000) {
+            alert("ERRO! CLASSE DE RESISTÊNICA NÃO SELECIONADA")
+
+        }
+    }   
+    
+    // CRIANDO IF PARA SÓ PEGAR ESSES VALORES SE A CLASSE ESTIVER ATIVA
+    if (document.querySelector(".nome3").classList.contains("ativo")){
+        dp_fc0k = document.getElementById("dp_fc").value
+        dp_fc0k = Number(dp_fc0k)                          
+        dp_fmk = document.getElementById("dp_fm").value
+        dp_fmk = Number(dp_fmk)                            //fv0 e fvk são a mesma coisa? RESPOSTA: No seu programa sim.
+        dp_Ec0 = document.getElementById("dp_ec").value
+        dp_Ec0 = Number(dp_Ec0)
+		
+		dp_Ec005 = 0.7*dp_Ec0
+		
+    }
+
+    console.log(dp_fc0k+"inicio")
+    console.log(dp_fmk)
+    console.log(dp_Ec0)
+    console.log(dp_densidade)
+    console.log(dp_Ec005)
+    console.log(dp_fmk)
+    console.log(dp_t0k)
+    console.log(dp_t90k)
+    console.log(dp_c90k)
+    console.log(dp_Ec90m)
+    console.log(dp_Gm)
+    console.log(dp_densidade_m)
+}
+
+// CHAMA A FUNÇÃO DP_CLASSE_CARREGAMENTO, DP_CLASSE_UMIDADE E DP_CLASSE_RES_1
+document.querySelector("#enviar").addEventListener("click",dp_classe_carregamento)
+document.querySelector("#enviar").addEventListener("click",dp_classe_umidade)
+document.querySelector("#enviar").addEventListener("click",dp_classe_res_1)
+
+
+// FUNÇÃO DE RESISTÊNCIA A COMPREESÃO PARALELA
+function dp_comp_par(){
+
+    dp_fc0d = dp_kmod1*dp_kmod2*dp_fc0k/1.4 
+        
+    document.getElementById("dp_fc0d").disabled = false;
+    document.getElementById("dp_fc0d").value = dp_fc0d.toFixed(3);
+    document.getElementById("dp_fc0d").disabled = true; 
+    //document.getElementById("dp_fc0d").innerHTML = dp_fc0d
+        
+    console.log(dp_fc0d+" resistencia a compressão paralela de cálculo")
+}
+
+// FUNÇÃO DE RESISTÊNCIA A FLEXÃO
+function dp_flex(){
+
+    dp_fmd = dp_kmod1*dp_kmod2*dp_fmk/1.4 
+        
+    document.getElementById("dp_fmd").disabled = false;
+    document.getElementById("dp_fmd").value = dp_fmd.toFixed(3);
+    document.getElementById("dp_fmd").disabled = true; 
+    //document.getElementById("dp_fmd").innerHTML = dp_fmd
+        
+    console.log(dp_fmd+" resistencia a compressão paralela de cálculo")
+}
+
+// FUNÇÃO DE RESISTÊNCIA AO CISALHAMENTO
+function dp_cis(){
+    dp_fvd = dp_kmod1*dp_kmod2*dp_fv0/1.8  //como na função de cima eu usei fv0 em vez de fvk, eu coloquei fv0
+    document.getElementById("dp_fvd").disabled = false;
+    document.getElementById("dp_fvd").value = dp_fvd.toFixed(3);
+    document.getElementById("dp_fvd").disabled = true; 
+    //document.getElementById("dp_fvd").innerHTML = dp_fvd
+
+    console.log(dp_fvd+" resistencia ao cisalhamento de cálculo")
+}
+
+// FUNÇÃO DE MÓDULO DE ELASTICIDADE
+function dp_mod_elast(){
+    dp_E0ef = dp_kmod1*dp_kmod2*dp_Ec0
+    document.getElementById("dp_E0ef").disabled = false;
+    document.getElementById("dp_E0ef").value = dp_E0ef.toFixed(3);
+    document.getElementById("dp_E0ef").disabled = true; 
+    //document.getElementById("dp_E0ef").innerHTML = dp_E0ef
+
+    console.log(dp_E0ef+" modulo de elasticidade")
+}
+
+// BOTÃO PARA CHAMAR AS TRÊS FUNÇÕES AQUI EM CIMA E PARA IMPRIMIR O RESULTADO
+document.querySelector("#enviar").addEventListener("click",dp_comp_par)
+document.querySelector("#enviar").addEventListener("click",dp_flex)
+document.querySelector("#enviar").addEventListener("click",dp_cis)
+document.querySelector("#enviar").addEventListener("click",dp_mod_elast)
+document.querySelector("#enviar").addEventListener("click",expandir_result_rescal)
+
+dp_norm = -10
+// FUNÇÃO PARA A VERIFICAÇÃO DA NORMAL
+function dp_normal_comp(){
+    dp_ex = 0
+    dp_ey = 0
+    if (dp_alert1 == 1 || dp_kmod2 == 11 || dp_fc0k == 5000 || dp_area == 0){
+        alert("ERRO! INFORMAÇÕES INSUFICIENTES PARA A VERIFICAÇÃO")
+    }
+    
+    else if (dp_alert1 != 1 || dp_kmod2 != 11 || dp_fc0k != 5000 || dp_area != 0){
+        
+        dp_norm = document.getElementById("dp_normal").value  
+        dp_norm = Number(dp_norm) 
+        dp_tensao_normal = (dp_norm/dp_area)
+
+        
+        if (dp_tensao_normal > dp_fc0d){
+            alert("É NECESSÁRIO AUMENTAR AS DIMENSÕES DA SEÇÃO TRANSVERSAL DO PILAR, POIS A CONFIGURAÇÃO INSERIDA NÃO SUPORTA AS SOLICITAÇÕES ATUANTES")
+			dp_textvn=">"
+			document.getElementById("dp_textvn").innerHTML = dp_textvn
+		}  
+
+        else {
+            alert("OK, O PILAR INSERIDO SUPORTA AS SOLICITAÇÕES ATUANTES")
+			dp_textvn="<"
+			document.getElementById("dp_textvn").innerHTML = dp_textvn
+        }
+		
+		dp_fc0dd=dp_fc0d;
+		
+		document.getElementById("dp_tensao_normal").disabled = false;
+		document.getElementById("dp_tensao_normal").value = dp_tensao_normal.toFixed(3);
+		document.getElementById("dp_tensao_normal").disabled = true; 
+		
+		document.getElementById("dp_fc0dd").disabled = false;
+		document.getElementById("dp_fc0dd").value = dp_fc0dd.toFixed(3);
+		document.getElementById("dp_fc0dd").disabled = true; 
+
+        console.log("dp_tensao_normal:" + dp_tensao_normal)
+        console.log(dp_norm)
+        console.log(dp_area)
+        
+		expandir_result_verif_normal();
+		}
+
+		
+		
+}
+
+function dp_normal_flexocomp(){
+    if (dp_alert1 == 1 || dp_kmod2 == 11 || dp_fc0k == 5000 || dp_area == 0){
+        alert("ERRO! INFORMAÇÕES INSUFICIENTES PARA A VERIFICAÇÃO")
+    }
+    
+    else{
+
+        dp_norm = document.getElementById("dp_normal2").value
+        dp_norm = Number(dp_norm) 
+        dp_ex = document.getElementById("dp_excentricidadex").value
+        dp_ex = Number(dp_ex)
+        dp_ey = document.getElementById("dp_excentricidadey").value
+        dp_ey = Number(dp_ey)
+        dp_mx = dp_norm*dp_ey
+        dp_my = dp_norm*dp_ex
+
+        dp_tensao_normal = (dp_norm/dp_area)
+        dp_tensao_x = (dp_mx/dp_mod_x)
+        dp_tensao_y = (dp_my/dp_mod_y)
+		
+		dp_km=7/10 //0.7 para seção retangular
+
+        dp_cond_1 = (Math.pow(dp_tensao_normal/dp_fc0d,2))+(dp_tensao_x/dp_fmd)+(dp_km*(dp_tensao_y/dp_fmd)) //fmk = fmd?? NÃO, TEM QUE USAR AQUI FMD
+        dp_cond_2 = (Math.pow(dp_tensao_normal/dp_fc0d,2))+(dp_km*(dp_tensao_x/dp_fmd))+(dp_tensao_y/dp_fmd)
+        
+		document.getElementById("dp_cond_1").disabled = false;
+		document.getElementById("dp_cond_1").value = dp_cond_1.toFixed(7);
+		document.getElementById("dp_cond_1").disabled = true; 
+		
+		document.getElementById("dp_cond_2").disabled = false;
+		document.getElementById("dp_cond_2").value = dp_cond_2.toFixed(7);
+		document.getElementById("dp_cond_2").disabled = true; 
+		
+		
+		console.log("dp_mx" + dp_mx)
+        console.log("dp_my" + dp_my)
+        console.log("dp_tensao_normal" + dp_tensao_normal)
+        console.log("dp_tensao_x" + dp_tensao_x)
+        console.log("dp_tensao_y" + dp_tensao_y)
+        console.log("dp_cond_1" + dp_cond_1)
+        console.log("dp_cond_2" + dp_cond_2)
+        
+        if(dp_cond_1 <=1 && dp_cond_2 <= 1){
+            alert("OK, O PILAR INSERIDO SUPORTA AS SOLICITAÇÕES ATUANTE")
+        dp_textvnf1="<"
+		document.getElementById("dp_textvnf1").innerHTML = dp_textvnf1
+		dp_textvnf2="<"
+		document.getElementById("dp_textvnf2").innerHTML = dp_textvnf2
+		}
+
+        else{
+            alert("É NECESSÁRIO AUMENTAR AS DIMENSÕES DA SEÇÃO TRANSVERSAL DO PILAR, POIS A CONFIGURAÇÃO INSERIDA NÃO SUPORTA AS SOLICITAÇÕES ATUANTES")
+        if(dp_cond_1 >1){
+        dp_textvnf1=">"
+		document.getElementById("dp_textvnf1").innerHTML = dp_textvnf1
+		}
+		
+		if(dp_cond_2 >1){
+		dp_textvnf2=">"
+		document.getElementById("dp_textvnf2").innerHTML = dp_textvnf2
+		}
+		
+		}
+    expandir_result_verif_normal_flexo();
+	}
+}
+
+function expandir_result_verif_normal(){
+    if (dp_alert1 == 1 || dp_kmod2 == 11 || dp_fc0k == 5000 || dp_area == 0){}
+
+    else if(dp_alert1 != 1 || dp_kmod2 != 11 || dp_fc0k != 5000 || dp_area != 0){
+        document.getElementById("resultado_verif_normal").style.display = "block";
+    }
+
+}
+
+function expandir_result_verif_normal_flexo(){
+    if (dp_alert1 == 1 || dp_kmod2 == 11 || dp_fc0k == 5000 || dp_area == 0){}
+
+    else if(dp_alert1 != 1 || dp_kmod2 != 11 || dp_fc0k != 5000 || dp_area != 0){
+        document.getElementById("resultado_verif_normal_flexo").style.display = "block";
+    }
+
+}
+
+//BOTÃO PARA CHAMAR A ESCOLHA DO TIPO DE ESFORCO E A VERIFICAÇÃO DA NORMAL
+document.querySelector("#compressao").addEventListener("click",dp_escolher_classe2)
+document.querySelector("#comp_verificar").addEventListener("click",dp_normal_comp)
+document.querySelector("#flexo_verificar").addEventListener("click",dp_normal_flexocomp)
+
+
+kex = 0
+function dp_vinculox(){
+    
+    if(document.getElementById("dp_1n1x").checked){
+        kex = 0.65
+    }
+
+    else if(document.getElementById("dp_1n2x").checked){
+        kex = 0.8
+    }
+
+    else if(document.getElementById("dp_1n3x").checked){
+        kex = 1.2
+    }
+
+    else if(document.getElementById("dp_1n4x").checked){
+        kex = 1
+    }
+
+    else if(document.getElementById("dp_1n5x").checked){
+        kex = 2.1
+    }
+
+    else if(document.getElementById("dp_1n6x").checked){
+        kex = 2.4
+    }
+
+    else if(kex == 0){
+        alert("ERRO! TIPO DE VINCULO EM X NÃO SELECIONADO")
+    }
+
+    console.log(kex+" kex")
+}
+
+key = 0
+function dp_vinculoy(){
+    
+    if(document.getElementById("dp_1n1y").checked){
+        key = 0.65
+    }
+
+    else if(document.getElementById("dp_1n2y").checked){
+        key = 0.8
+    }
+
+    else if(document.getElementById("dp_1n3y").checked){
+        key = 1.2
+    }
+
+    else if(document.getElementById("dp_1n4y").checked){
+        key = 1
+    }
+
+    else if(document.getElementById("dp_1n5y").checked){
+        key = 2.1
+    }
+
+    else if(document.getElementById("dp_1n6y").checked){
+        key = 2.4
+    }
+
+    else if(key == 0){
+        alert("ERRO! TIPO DE VINCULO EM Y NÃO SELECIONADO")
+    }
+
+    console.log(key+" key")
+}
+
+//COMO FAZ PRA ALERTAR QUE SE NÃO TIVER AREA NÃO CALCULA?
+function dp_verif_estabilidade(){
+    if (dp_norm == -10){
+        alert("ERRO! VALOR DE TENSÃO NORMAL NÃO CALCULADO")
+    }
+
+    else if(dp_norm != -10){
+        if(kex == 0 ||key == 0 ){}
+        
+        else if(kex != 0 ||key != 0 ){
+            dp_L = document.getElementById("dp_vao").value
+            dp_L = Number(dp_L)
+            
+            dp_flamb_x = dp_L*kex
+            dp_flamb_y = dp_L*key
+            
+            dp_esbeltez_x = dp_flamb_x/(Math.sqrt(dp_momentox/dp_area))
+            dp_esbeltez_y = dp_flamb_y/(Math.sqrt(dp_momentoy/dp_area))
+
+            if (dp_esbeltez_x>140 || dp_esbeltez_y>140 ){
+                alert("ERRO! ÍNDICE DE ESBELTEZ MAIOR DO QUE O MÍNIMO VALOR PERMITIDO")
+            }
+
+            else {
+                dp_indice_ex = (dp_esbeltez_x/(Math.PI))*(Math.sqrt(dp_fc0k/dp_Ec005))
+                dp_indice_ey = (dp_esbeltez_y/(Math.PI))*(Math.sqrt(dp_fc0k/dp_Ec005))
+
+                if(dp_indice_ex > 0.3 || dp_indice_ey > 0.3){
+                    
+					dp_betac=0.2;//para madeira serrada
+					dp_kx = 0.5*(1+dp_betac*(dp_indice_ex-0.3)+Math.pow(dp_indice_ex,2))
+                    dp_ky = 0.5*(1+dp_betac*(dp_indice_ey-0.3)+Math.pow(dp_indice_ey,2))
+                    dp_kcx = 1/(dp_kx+Math.sqrt(Math.pow(dp_kx,2)-Math.pow(dp_indice_ex,2)))
+                    dp_kcy = 1/(dp_ky+Math.sqrt(Math.pow(dp_ky,2)-Math.pow(dp_indice_ey,2)))
+
+                    //excentricidade só existe em flexocompressão
+                    //considero ela O na compressão simples? RESPOSTA: SIM, ESTÁ CORRETO O QUE VC FEZ
+                    dp_mx = dp_norm*dp_ey
+                    dp_my = dp_norm*dp_ex
+                    dp_tensao_normal = (dp_norm/dp_area)
+                    dp_tensao_x = (dp_mx/dp_mod_x)
+                    dp_tensao_y = (dp_my/dp_mod_y)
+					
+					dp_km=7/10 //0.7 para seção retangular
+
+                    dp_econd_1 = (dp_tensao_normal/(dp_kcx*dp_fc0d))+(dp_tensao_x/dp_fmd)+(dp_km*(dp_tensao_y/dp_fmd)) //fmk = fmd??
+                    dp_econd_2 = (dp_tensao_normal/(dp_kcy*dp_fc0d))+(dp_km*(dp_tensao_x/dp_fmd))+(dp_tensao_y/dp_fmd)
+
+                    if (dp_econd_1 > 1 || dp_econd_2 > 1){
+                        alert("O PILAR INSERIDO NÃO ATENDE OS REQUISITOS DE ESTABILIDADE")
+                    }
+
+                    else{
+                        alert("OK, O PILAR INSERIDO ATENDE OS REQUISITOS DE ESTABILIDADE")
+                    }
+                }
+
+                else {
+                    alert("NÃO É NECESSÁRIO FAZER A VERIFICAÇÃO DE ESTABILIDADE")
+                }
+            }
+        }
+    }   
+
+    console.log(dp_flamb_x + " flambagem em x")
+    console.log(dp_flamb_y + " flambagem em y")
+    console.log(dp_esbeltez_x + " esbeltez em x")
+    console.log(dp_esbeltez_y + " esbeltez em y")
+    console.log(dp_indice_ex + " dp_indice_ex")
+    console.log(dp_indice_ey + " dp_indice_e")
+    console.log(dp_kx + " dp_kx")
+    console.log(dp_ky + " dp_ky")
+    console.log(dp_kcx + " dp_kcx")
+    console.log(dp_kcy + " dp_kcy")
+    console.log(dp_econd_1 + " dp_econd_1")
+    console.log(dp_econd_2 + " dp_econd_2")
+}
+
+//BOTÃO PARA CHAMAR TODA A VERIFICAÇÃO DA ESTABILIDADE
+document.querySelector("#est_verificar").addEventListener("click",dp_vinculox)
+document.querySelector("#est_verificar").addEventListener("click",dp_vinculoy)
+document.querySelector("#est_verificar").addEventListener("click",dp_verif_estabilidade)

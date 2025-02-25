@@ -1,0 +1,282 @@
+<!DOCTYPE html> 
+
+<html>
+
+    <script src="../dv-CodigosJS/dv-fresistencia.js"></script><!-- calculo da resistencia e salvar propriedades -->
+    <script src="../pdfmake.min.js"></script>
+    <script src="../vfs_fonts.js"></script>
+    
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../dv-style.css" media="screen"/>
+        <title>Resistência ao Cálculo</title>
+
+    </head>
+
+    <body>
+
+        <img src="../dv-Imagens/dv-woodpecker.png" id="logoprograma" width="8%" height="8%">
+        <img src="../dv-Imagens/dv-ufclaro.png" id="logoufscar" width="10%" height="10%">
+
+        <ul>
+            <!-- Menu -->
+            <li><a class="menu" href="../dv-homepage.html">Início</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-geometria.html">Geometria</a></li>
+            <li><a class="menu active" href="#same">Resistência ao Cálculo</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-flexao-simples.html">Flexão Simples</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-cisalhamento.html">Cisalhamento</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-compressão.html">Compressão Normal às Fibras</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-estabilidade.html">Estabilidade Lateral de Vigas</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-ELS.html">Estado Limite de Serviço</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-explicaçao.html">Explicações</a></li>
+            <li style="float: right; margin-right: 5%; margin-top: 1.5%;">
+        </ul>
+        <br><br><br><br>
+
+        <div style="margin-right: 17%; margin-left: 17%;">
+
+            <!-- Div com breve explicação sobre a página
+            botão entendi libera o resto
+            botão não entendi redireciona para explicação mais profunda-->
+            <div id="dv-explicacao-resistencia">
+
+                A <strong>Resistência ao Cálculo</strong> é uma estimativa da resistência da madeira definida
+                por meio de suas propriedades físicas.
+                <br><br>
+                As informações necessárias nesta página são:
+                <div style="margin-left: 3%;">
+                    A classe de umidade;<br>
+                    A classe de carregamento;<br>
+                    A classe de resistência da madeira.
+                </div>
+                <br>
+                As contas realizadas nessa página são baseadas nas informações dadas anteriormente nas outras páginas.
+                <br><br><br><br>
+    
+                <table>
+                    <td>
+                        <button type="button" class="button buttoncalculo" onclick="dv_Entendi()">Entendi</button>
+                    </td>
+                    <td>
+                        <button type="button" class="button buttoncalculo" onclick="location.href='../dv-CodigosHTML/dv-explicaçao.html'">Não Entendi</button>
+                    </td>
+                </table>
+    
+            </div>
+
+            <div id="dv-entrada-de-dados-resistencia" style="display: none;">
+
+                <center><h2>Cálculo da Resistência de Cálculo da Madeira</h2></center>
+                <br><br><br>
+
+
+                <!-- classe de carregamento -->
+                <label for="dv-carreg">Tipo de Carregamento</label>
+
+                <img src="../dv-Imagens/dv-kmod1.png" width="45%" height="15%" style="float: right;">
+
+                <br>
+                <select id="dv-carreg" name="dv-carreg">
+                    <option value="0"></option>
+                    <option value="1">Permanente</option>
+                    <option value="2">Longa Duração</option>
+                    <option value="3">Média Duração</option>
+                    <option value="4">Curta Duração</option>
+                    <option value="5">Instantânea</option>
+                </select><br>
+                
+                Em dúvida?
+                <a href="dv-explicaçao.html##Resistência ao Calculo" target="_blank">
+                    <span style="cursor:help">
+                        <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                </a>
+                <br><br><br><br>
+
+
+                 <!-- selecionando classe de umidade -->
+                <label for="dv-umida">Classe de Umidade</label>
+
+                <img src="../dv-Imagens/dv-kmod2.png" width="45%" height="15%" style="float: right;">
+
+                <br>
+                <select id="dv-umida" name="dv-umida">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select><br>
+
+                Em dúvida?
+                <a href="dv-explicaçao.html##Resistência ao Calculo" target="_blank">
+                    <span style="cursor:help">
+                        <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                </a>
+                <br><br><br><br>
+
+
+                <!-- Classe de resistência da madeira liberada de acordo com o tipo -->
+                Classe de resistência da madeira<br><br>
+
+                <input type="radio" id="dv-ise-def" name="dv-escolha" value="1" onclick="dv_LiberarClasseResistencia()">
+                <label for="dv-ise-def">Para corpos de prova isentos de defeito (madeira nativa)</label><br>
+                <input type="radio" id="dv-pec-est" name="dv-escolha" value="2" onclick="dv_LiberarClasseResistencia()">
+                <label for="dv-peç-est">Para peças estruturais (madeira de reflorestamento)</label><br>
+                <input type="radio" id="dv-ins-man" name="dv-escolha" value="3" onclick="dv_LiberarClasseResistencia()">
+                <label for="dv-ins-man">Para inserir valores manualmente</label>
+                <br><br>
+                Em dúvida?
+                <a href="dv-explicaçao.html##Resistência ao Calculo" target="_blank">
+                    <span style="cursor:help">
+                        <img src="../dv-Imagens/dv-duvida.jpg" alt="dv-duvida" width="16" height="16"></span>
+                </a>
+
+
+                <div id="dv-isento-de-defeito" style="display: none;">
+                    <br><br><br>
+                    <label for="dv-res-ise">Isento de Defeitos</label><br>
+                    <select class="select" name="dv-res-ise" id="dv-res-ise">
+                        <option value="0"></option>
+                        <option value="1">D20</option>
+                        <option value="2">D30</option>
+                        <option value="3">D40</option>
+                        <option value="4">D50</option>
+                        <option value="5">D60</option>
+                    </select>
+
+                </div>
+
+                <div id="dv-peca-estrutural" style="display: none;">
+                    <br><br><br>
+                    <label for="dv-res-est">Peças Estruturais</label><br>
+                    <select class="select" id="dv-res-est">
+                        <option value="0"></option>
+                        <optgroup label="Coníferas">
+                            <option value="1">C14</option>
+                            <option value="2">C16</option>
+                            <option value="3">C18</option>
+                            <option value="4">C20</option>
+                            <option value="5">C22</option>
+                            <option value="6">C24</option>
+                            <option value="7">C27</option>
+                            <option value="8">C30</option>
+                            <option value="9">C35</option>
+                            <option value="10">C40</option>
+                            <option value="11">C45</option>
+                            <option value="12">C50</option>
+                        </optgroup>
+                        <optgroup label="Folhosas">
+                            <option value="13">D18</option>
+                            <option value="14">D24</option>
+                            <option value="15">D30</option>
+                            <option value="16">D35</option>
+                            <option value="17">D40</option>
+                            <option value="18">D50</option>
+                            <option value="19">D60</option>
+                            <option value="20">D70</option>
+                        </optgroup>
+                    </select>
+
+                </div>
+
+                <div id="dv-inserir-manualmente" style="display: none;">
+                    <br><br><br>
+                    <label for="dv-fc0k-man">Compressão Paralela (f<sub>c0,k</sub>)</label><br>
+                    <input type="number" id="dv-fc0k-man" value=""> MPa<br><br>
+					
+					<label for="dv-fbk-man">Flexão (f<sub>b,k</sub>)</label><br>
+                    <input type="number" id="dv-fbk-man" value=""> MPa<br><br>
+
+                    <label for="dv-fvk-man">Cisalhamento (f<sub>v0,k</sub>)</label><br>
+                    <input type="number" id="dv-fvk-man" value=""> MPa<br><br> 
+                    
+                    <label for="dv-Ec0m-man">Módulo de Elasticidade (E<sub>c0,m</sub>)</label><br>
+                    <input type="number" id="dv-Ec0m-man" value=""> GPa
+
+                </div>
+                <br><br><br><br>
+
+                <button type="button" class="button buttoncalculo" 
+                onclick="dv_kmod1(), dv_kmod2(), dv_IsentoDefeito(), dv_PecaEstrutral(), dv_Manualmente(), dv_VerificacaoRes()">
+                Salvar Valores</button>
+                <br><br><br><br>
+            
+            </div>
+
+            <div id="dv-contas-resistencia" style="display: none;">
+                
+                <button type="button" class="button buttoncalculo" onclick="dv_CompressaoParalela()">
+                    Compressão Paralela</button><br><br>
+                A resistência à compressão paralela de cálculo(f<sub>c0,d</sub>) é: <ins id="dv-res-com-par"></ins><ins id="dv-com-par-uni"></ins>
+                <br><br><br><br>
+				
+				<button type="button" class="button buttoncalculo" onclick="dv_Flexao()">
+                    Flexão</button><br><br>
+                A resistência à flexão de cálculo(f<sub>b,d</sub>) é: <ins id="dv-res-flex"></ins><ins id="dv-flex-uni"></ins>
+                <br><br><br><br>				
+
+                <button type="button" class="button buttoncalculo" onclick="dv_Cisalhamento()">
+                    Cisalhamento</button><br><br>
+                A resistência ao cisalhamento de cálculo (f<sub>v0,d</sub>) é: <ins id="dv-res-cis"></ins><ins id="dv-res-cis-uni"></ins>
+                <br><br><br><br>
+                
+                <button type="button" class="button buttoncalculo" onclick="dv_ModuloElasticidade()">
+                    Módulo de Elasticidade</button><br><br>
+                    O valor efetivo do módulo de elasticidade (E<sub>0,ef</sub>) é: <ins id="dv-mod-ela"></ins><ins id="dv-mod-ela-uni"></ins>
+                <br><br><br><br>
+
+                <button type="button" class="button buttoncalculo" onclick="dv_PDFRes()">Emitir PDF</button>
+                <br><br><br><br>
+
+                <a href="../dv-CodigosHTML/dv-flexao-simples.html">Continue aqui</a>
+                <br><br><br><br>
+                
+            </div>
+
+        </div>
+
+        <div id="dv-rodape" class="rodape" style="display: none;">
+            <div class="row">
+                <div class="column">
+                    <b>Desenvolvido por:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/4101333847048666" target="_blank">
+                        Raquel Oliveira Azevedo
+                    </a><br>
+					<a href="http://lattes.cnpq.br/7623383075429186" target="_blank">
+						André Luis Christoforo
+					</a><br>
+                    <a href="http://lattes.cnpq.br/1986028653323442" target="_blank">
+                        Isabella Silva Menezes
+                    </a><br>
+                </div>
+				<div class="column">
+                    <b>Colaboradores:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/8465474056220474" target="_blank">
+                        Matheus Henrique Morato de Moraes
+                    </a><br>
+					<a href="http://lattes.cnpq.br/2333091200416653" target="_blank">
+						Francisco Antonio Rocco Lahr
+					</a><br>
+                    <a href="http://lattes.cnpq.br/2268506213083114" target="_blank">
+                        Wanderlei Malaquias Pereira Junior
+                    </a><br>
+                </div>
+                <div class="column">
+                    <b>Contato</b><br>
+                    <br>
+                    <a>ec.isabellasm@gmail.com</a><br>
+                    <a>raquel.azevedo@estudante.ufscar.br</a><br><br>
+                    <b>Logo</b>: Julia Sanchez Sáez
+                </div>
+                <div class="column" align="right">
+                    <b>Referência</b>
+                    <br><br>
+                    ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. ABNT NBR 7190-1: Projeto de estruturas de madeira – Parte 1: Critérios de dimensionamento. Rio de Janeiro: ABNT, 2022.
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

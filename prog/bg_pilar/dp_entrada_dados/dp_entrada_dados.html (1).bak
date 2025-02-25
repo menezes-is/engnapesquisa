@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PROGRAMA DE IC</title>
+<link rel="stylesheet" type="text/css" href="../dp_style_IC.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"/>
+</head>
+
+<body>
+
+<ul>
+  <img src="../dp_ufscar-branco.png" width="100" height="55" style="float:right">
+  <a id="menu" href="../dp_index_ic.html">Início</a>
+  <a class="active" id="menu" href="../dp_entrada_dados/dp_entrada_dados.html">Verificação</a>
+</ul>
+
+<div style="padding:50px 16px;">
+  
+<!-- ENTRADA DO TIPO DE MADEIRA -->
+  <h2 style="color:black"> TIPO DE MADEIRA </h2> 
+  <label for="dp_tipo_madeira">&nbsp Madeira do tipo:</label><br>
+  <input type="radio" id="dp_madeiraserrada" name="dp_tipo_madeira" value="madeira serrada" checked>
+  <label for="dp_madeiraserrada">Madeira serrada</label>
+  <br><br>
+
+  <h2> PROPRIEDADES GEOMÉTRICAS </h2>
+  <label for="dp_base">&nbsp Unidade de medida:</label>
+  <select name="dp_unidade" id="dp_unidade">
+    <option value="1">mm</option>
+    <option value="2">cm</option>
+    <option value="3">m</option>
+  </select>
+  <br><br>
+
+<!-- ENTRADA DO VALOR BASE -->
+  <label for="dp_base">&nbsp Base da seção transversal:</label>
+  <input type="number" id="dp_base" name="dp_base"value="10"><br><br>
+ 
+<!-- ENTRADA DO VALOR DA ALTURA--> 
+  <label for="dp_altura">&nbsp Altura da seção tranversal:</label>
+  <input type="number" id="dp_altura" name="dp_altura"value="20">
+  <br><br> <!-- PULAR LINHA-->
+
+<!-- ENTRADA DO VALOR DO VÃO -->
+  <label for="dp_vao">&nbsp Vão da viga:</label>
+  <input type="number" id="dp_vao" name="dp_vao"value="350">
+  <br>
+  <button type="button" class="button dp_modal" id="dp_tabela1" href="#myModal5">Consultar imagem</button>
+  <br><br><!-- PULAR LINHA-->
+
+<!-- BOTÃO DE CALCULO DAS PROPRIEDADES GEOMÉTRICAS -->
+  <button type="button" class="button dp_button" id="calcular" >CALCULAR</button>
+  <br><br>
+  <div id="resultado_prop_geo" style="display:none">
+  Área da seção transversal = 
+  <input class="form-control" type="number" id="dp_area_e" disabled="true">
+  <ins id="dp_unid_text" style="text-decoration:none"></ins><sup>2</sup>
+  <br><br>
+  Momento de inércia no eixo x = 
+  <input class="form-control" type="number" id="dp_momentox_e" disabled="true">
+  <ins id="dp_unid_text1" style="text-decoration:none"></ins><sup>4</sup>
+  <br><br>
+  Momento de inércia no eixo y = 
+  <input class="form-control" type="number" id="dp_momentoy_e" disabled="true">
+  <ins id="dp_unid_text2" style="text-decoration:none"></ins><sup>4</sup>
+  <br><br>
+  Módulo de resistência no eixo x = 
+  <input class="form-control" type="number" id="dp_mod_x_e" disabled="true">
+  <ins id="dp_unid_text3" style="text-decoration:none"></ins><sup>3</sup>
+  <br><br>
+  Módulo de resistência no eixo y = 
+  <input class="form-control" type="number" id="dp_mod_y_e" disabled="true">
+  <ins id="dp_unid_text4" style="text-decoration:none"></ins><sup>3</sup>
+  </div>
+  <br> 
+
+  <!-- MODAL -->
+  <div id="myModal1" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="../tabela1.png">
+    </div>
+  </div>
+
+  <div id="myModal2" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="../tabela2.png">
+    </div>
+  </div>
+
+  <div id="myModal3" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="../tabela3.png">
+    </div>
+  </div>
+
+  <div id="myModal4" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="../tabela4.png">
+    </div>
+  </div>
+
+  <div id="myModal5" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="../imagem3.png">
+    </div>
+  </div>
+
+  <div id="myModal6" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="../figura2-sem-fundo.png">
+    </div>
+  </div>
+
+  <div id="myModal7" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="../imagem1.png">
+    </div>
+  </div>
+
+  <div id="myModal8" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="../imagem2.png">
+    </div>
+  </div>
+
+  <h2> RESISTENCIA DE CÁLCULO </h2>
+  <!-- ENTRADA DA CLASSE DE UMIDADE -->
+  <h3> Classe de umidade da madeira</h3>
+  <label for="dp_classe"> &nbsp Classe:</label><br>
+  <input type="radio" id="dp_classe1" name="dp_classe" value="1">
+  <label for="dp_classe1">1</label>
+  <input type="radio" id="dp_classe2" name="dp_classe" value="2">
+  <label for="dp_classe2">2</label>
+  <input type="radio" id="dp_classe3" name="dp_classe" value="3">
+  <label for="dp_classe3">3</label>
+  <input type="radio" id="dp_classe4" name="dp_classe" value="4">
+  <label for="dp_classe4">4</label>
+  <br>
+  <button type="button" class="button dp_modal" id="dp_tabela1" href="#myModal1">Consultar a tabela</button>
+  <br><br>
+
+  <!-- ESCOLHA DO TIPO DE CLASSE DE RESISTENCIA -->
+  <h3> Classe de resistência da madeira </h3>
+  <form action="/action_page.php">
+	  <label for="dp_res">Classe de resistência da madeira:</label>
+	  <select name="dp_res" id="dp_res" >
+		<option value="dp_res_1">Definida a partir de ensaio de corpos de prova isentos de defeito</option>
+		<option value="dp_res_2">Definida a partir de ensaios de peças estruturais</option>
+		<option value="dp_res_3">Inserir manualmente valores de resistência característica</option>
+	  </select>
+	  <button type="button" class="button dp_button" id="botao" >ESCOLHER</button>
+  </form>
+
+  <!-- OPÇÕES DE ENSAIOS DE CORPOS DE PROVA ISENTOS DE DEFEITO -->
+  <div class="dp_oi nome1 ativo">
+	  <label for="dp_1"> Classe: </label><br>
+	  <input type="radio" id="dp_1res1" name="dp_1" value="1">
+	  <label for="dp_1res1">D20</label>
+	  <input type="radio" id="dp_1res2" name="dp_1" value="2">
+	  <label for="dp_1res2">D30</label>
+	  <input type="radio" id="dp_1res3" name="dp_1" value="3">
+	  <label for="dp_1res3">D40</label>
+	  <input type="radio" id="dp_1res4" name="dp_1" value="4">
+	  <label for="dp_1res4">D50</label>
+	  <input type="radio" id="dp_1res5" name="dp_1" value="5">
+	  <label for="dp_1res5">D60</label>
+    <br>
+    <button type="button" class="button dp_modal" id="dp_tabela1" href="#myModal3">Consultar a tabela</button>
+  </div>
+ <!-- OPÇÕES DE ENSAIOS DE PEÇAS ESTRUTURAIS -->
+  <div class="dp_oi nome2">
+	  <label for="dp_2"> Classe: </label><br>
+	  <input type="radio" id="dp_2res1" name="dp_2" value="1">
+	  <label for="dp_2res1">C14</label>
+	  <input type="radio" id="dp_2res2" name="dp_2" value="2">
+	  <label for="dp_2res2">C16</label>
+	  <input type="radio" id="dp_2res3" name="dp_2" value="3">
+	  <label for="dp_2res3">C18</label>
+	  <input type="radio" id="dp_2res4" name="dp_2" value="4">
+	  <label for="dp_2res4">C20</label>
+	  <input type="radio" id="dp_2res5" name="dp_2" value="5">
+	  <label for="dp_2res5">C22</label>
+	  <input type="radio" id="dp_2res6" name="dp_2" value="6">
+	  <label for="dp_2res6">C24</label>
+	  <input type="radio" id="dp_2res7" name="dp_2" value="7">
+	  <label for="dp_2res7">C27</label>
+	  <input type="radio" id="dp_2res8" name="dp_2" value="8">
+	  <label for="dp_2res8">C30</label>
+	  <input type="radio" id="dp_2res9" name="dp_2" value="9">
+	  <label for="dp_2res9">C35</label>
+	  <input type="radio" id="dp_2res10" name="dp_2" value="10">
+	  <label for="dp_2res10">C40</label><br>
+	  <input type="radio" id="dp_2res11" name="dp_2" value="11">
+	  <label for="dp_2res11">C45</label>
+	  <input type="radio" id="dp_2res12" name="dp_2" value="12">
+	  <label for="dp_2res12">C50</label>
+	  <input type="radio" id="dp_2res13" name="dp_2" value="13">
+	  <label for="dp_2res13">D18</label>
+	  <input type="radio" id="dp_2res14" name="dp_2" value="14">
+	  <label for="dp_2res14">D24</label>
+	  <input type="radio" id="dp_2res15" name="dp_2" value="15">
+	  <label for="dp_2res15">D30</label>
+	  <input type="radio" id="dp_2res16" name="dp_2" value="16">
+	  <label for="dp_2res16">D35</label>
+	  <input type="radio" id="dp_2res17" name="dp_2" value="17">
+	  <label for="dp_2res17">D40</label>
+	  <input type="radio" id="dp_2res18" name="dp_2" value="18">
+	  <label for="dp_2res18">D50</label>
+    <input type="radio" id="dp_2res19" name="dp_2" value="19">
+	  <label for="dp_2res19">D60</label>
+    <input type="radio" id="dp_2res20" name="dp_2" value="20">
+	  <label for="dp_2res20">D70</label>
+    <br>
+    <button type="button" class="button dp_modal" id="dp_tabela1" href="#myModal4">Consultar a tabela</button>
+  </div>
+ 
+  <!-- OPÇÕES DE INSERIR MANUALMENTE --> 
+  <div class="dp_oi nome3">
+	  <label for="dp_base"> </label>
+	  <p> &nbsp&nbsp Resistência à Compressão paralela às fibras característica (f<sub>c,0k </sub>):
+	  <input type="number" id="dp_fc" name="dp_fc"value="0"> MPa<br> </p>
+	  <p> &nbsp&nbsp Resistência à Flexão característica(f<sub>m,k</sub>):
+	  <input type="number" id="dp_fm" name="dp_fm"value="0"> MPa<br> </p>
+	  <p> &nbsp&nbsp Módulo de elasticidade médio(E<sub>c0,m</sub>):
+	  <input type="number" id="dp_ec" name="dp_ec"value="0"> MPa<br> </p>
+  </div>
+
+  <br><br>
+  
+  <!-- ESCOLHA DA CLASSE DE CARREGAMENTO -->
+  <label for="Classe"><h3>Classe de carregamento</h3></label>
+  <select name="dp_carregamento" id="dp_carregamento">
+    <option value="0"></option>
+    <option value="1">Permanente</option>
+    <option value="2">Longa duração</option>
+    <option value="3">Média duração</option>
+    <option value="4">Curta duração</option>
+    <option value="5">Instantânea</option>
+  </select>
+  <br>
+  <button type="button" class="button dp_modal" id="dp_tabela1" href="#myModal2">Consultar a tabela</button>
+
+  <!-- APARECE O LUGAR PARA INSERIR A INCLINAÇÃO SE APERTAR O BOTÃO -->
+  <!-- <label for="dp_inc">&nbsp Inclinação do pilar (Graus):</label> --> <!--AINDA NÃO FAZ NADA-->
+  <!-- <input type="number" id="dp_inc" name="dp_inc"value="0"><br><br> -->
+  <br>
+  <button type="button" class="button dp_button2" id="dp_sim">Fazer o cálculo para inclinação a cima de 6 graus</button>
+  <br><br>
+  <button type="button" class="button dp_button" id="enviar">ENVIAR</button>
+  
+  <!-- IMPRIME O RESULTADO DO CALCULO DA COMPRESSÃO PARALELA, CISALHAMENTO E MOD DE ELASTICIDADE -->
+  <div id="resultado_res_cal" style="display:none">
+  <br>
+  Resistência a compressão paralela de cálculo = 
+  <input class="form-control" type="number" id="dp_fc0d" disabled="true"> MPa
+  <br><br>
+  Resistência a flexão de cálculo = 
+  <input class="form-control" type="number" id="dp_fmd" disabled="true"> MPa
+  </div>
+ 
+  <!-- INSERIR O VALOR DA NORMAL-->
+  <br><br><br>
+
+  <h2> VERIFICAÇÃO DA TENSÃO NORMAL </h2>
+  <form action="/action_page.php">
+	  <label for="dp_casa">Tipo de esforço solicitante:</label>
+	  <select name="dp_casa" id="dp_casa" >
+		<option value="dp_casa_1">Compressão simples</option>
+		<option value="dp_casa_2">Flexocompressão</option>
+    </select>
+    <button type="button" class="button dp_button" id="compressao">ESCOLHER</button>
+  </form>
+
+  <div class="dp_compressao escolha1 active1">
+    <label for="dp_normal">&nbsp Valor de cálculo da força normal de compressão atuante (FN):</label> 
+    <input type="number" id="dp_normal" name="dp_normal"value="100"> N <br>
+    <button type="button" class="button dp_modal" id="dp_tabela1" href="#myModal8">Consultar imagem</button><br><br>
+
+    <button type="button" class="button dp_button" id="comp_verificar" >VERIFICAR</button>
+  </div>
+
+  <div class="dp_compressao escolha2">
+    <label for="dp_normal2">&nbsp Valor de cálculo da força normal de compressão atuante (FN):</label> 
+    <input type="number" id="dp_normal2" name="dp_normal2"value="100"> N <br><br> 
+    <label for="dp_excentricidadex">&nbsp Valor da excentricidade em x (ex):</label> 
+    <input type="number" id="dp_excentricidadex" name="dp_excentricidadex"value="1"> mm <br><br>
+    <label for="dp_excentricidadey">&nbsp Valor da excentricidade em y (ey):</label>
+    <input type="number" id="dp_excentricidadey" name="dp_excentricidadey"value="1"> mm <br>
+    <button type="button" class="button dp_modal" id="dp_tabela1" href="#myModal7">Consultar imagem</button><br><br>
+
+    <button type="button" class="button dp_button" id="flexo_verificar" >VERIFICAR</button>
+
+  </div>
+  <br><br>
+
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      margin-left: 1%;
+    }
+    
+    td, th {
+      border: 1px solid black;
+      text-align: center;
+      padding: 5px;
+      background-color: white;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+  <!-- IMPRIME O RESULTADO DO CALCULO DA COMPRESSÃO PARALELA, CISALHAMENTO E MOD DE ELASTICIDADE -->
+ 
+ <div id="resultado_verif_normal" style="display:none">
+  <br>
+  Tensão Solicitante =
+  <input class="form-control" type="number" id="dp_tensao_normal" disabled="true"> MPa
+  <ins id="dp_textvn" style="text-decoration:none"></ins>
+  Tensão Resistente = 
+  <input class="form-control" type="number" id="dp_fc0dd" disabled="true"> MPa
+  <br><br>
+  </div>
+  
+ <div id="resultado_verif_normal_flexo" style="display:none">
+  <br>
+  Condição 1 =
+  <input class="form-control" type="number" id="dp_cond_1" disabled="true">
+  <ins id="dp_textvnf1" style="text-decoration:none"></ins> 1
+  <br><br>
+  Condição 2 = 
+  <input class="form-control" type="number" id="dp_cond_2" disabled="true">
+  <ins id="dp_textvnf2" style="text-decoration:none"></ins> 1
+  <br><br>
+  </div>
+
+
+   <!-- ENTRADA DO VALOR DA VINCULAÇÃO -->
+  <h2> VERIFICAÇÃO DE ESTABILIDADE </h2>   
+  <label for="dp_tipox">&nbsp Tipo de vínculo em x:</label><br>
+  <table>
+    <tr>
+      <th><img src="../t1.png"></th>
+      <th><img src="../t2.png"></th>
+      <th><img src="../t3.png"></th>
+      <th><img src="../t4.png"></th>
+      <th><img src="../t5.png"></th>
+      <th><img src="../t6.png"></th>
+    </tr>
+    <tr>
+      <td><input type="radio" id="dp_1n1x" name="dp_tipox" value="1">
+      <label for="dp_1n1x">1</label></td>
+      <td><input type="radio" id="dp_1n2x" name="dp_tipox" value="2">
+      <label for="dp_1n2x">2</label></td>
+      <td><input type="radio" id="dp_1n3x" name="dp_tipox" value="3">
+      <label for="dp_1n3x">3</label></td>
+      <td><input type="radio" id="dp_1n4x" name="dp_tipox" value="4">
+      <label for="dp_1n4x">4</label></td>
+      <td><input type="radio" id="dp_1n5x" name="dp_tipox" value="5">
+      <label for="dp_1n5x">5</label></td>
+      <td><input type="radio" id="dp_1n6x" name="dp_tipox" value="6">
+      <label for="dp_1n6x">6</label></td>
+    </tr>
+  </table>
+  <br><br>
+  <label for="dp_tipox">&nbsp Tipo de vínculo em y:</label><br>
+  <table>
+    <tr>
+      <th><img src="../t1.png"></th>
+      <th><img src="../t2.png"></th>
+      <th><img src="../t3.png"></th>
+      <th><img src="../t4.png"></th>
+      <th><img src="../t5.png"></th>
+      <th><img src="../t6.png"></th>
+    </tr>
+    <tr>
+      <td><input type="radio" id="dp_1n1y" name="dp_tipoy" value="1">
+      <label for="dp_1n1y">1</label></td>
+      <td><input type="radio" id="dp_1n2y" name="dp_tipoy" value="2">
+      <label for="dp_1n2y">2</label></td>
+      <td><input type="radio" id="dp_1n3y" name="dp_tipoy" value="3">
+      <label for="dp_1n3y">3</label></td>
+      <td><input type="radio" id="dp_1n4y" name="dp_tipoy" value="4">
+      <label for="dp_1n4y">4</label></td>
+      <td><input type="radio" id="dp_1n5y" name="dp_tipoy" value="5">
+      <label for="dp_1n5y">5</label></td>
+      <td><input type="radio" id="dp_1n6y" name="dp_tipoy" value="6">
+      <label for="dp_1n6y">6</label></td>
+    </tr>
+  </table>
+  <button type="button" class="button dp_modal" id="dp_tabela1" href="#myModal6">Consultar a tabela</button>
+  <br><br>
+  <button type="button" class="button dp_button" id="est_verificar" >VERIFICAR</button>
+  
+  <br><br><br> <!-- ESPAÇOS NO FINAL DA PÁGINA -->
+
+</div>
+<script src="dp_funcoes_entrada_dados.js"> </script>
+<script>"../modal.js"</script>
+</body>
+</html>

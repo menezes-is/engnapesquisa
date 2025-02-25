@@ -1,0 +1,441 @@
+/* ESTILO DO MENU */
+hmtl, body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #000000;
+  /*position: fixed;*/
+  height: 8%;
+  overflow: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 2px 1px 6px;
+}
+
+/* ESTILO DA ONDE TEM A ENTRADA DOS DADOS */
+/*.dp_ent_dados{
+  margin: 30px 200px 30px 200px;
+  border: 0px solid black;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px #000000;
+}*/
+
+/*.dp_ent_dados{
+  margin: 0px 0px 0px 20px;
+}*/
+
+.dp_parte_1{
+  margin: 0px 300px 20px 300px;
+  border: 0px solid black;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 3px rgb(170, 164, 164);
+  padding: 20px;
+}
+
+#menu {
+  display: inline-block;
+  color: white;
+  padding: 16px 16px;
+  text-decoration: none;
+  font-family: Arial, Helvetica sans-serif;
+  font-size: 22px;	
+}
+
+#menu.active {
+  background-color: #000000;
+  color: white;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+#menu:hover:not(.active) {
+	background-color: white;
+	color: black;
+	font-weight: bold;
+}
+
+.topo{
+	height:150px;
+	max-height: 150px;
+	background-image: url("dp_wood.jpg");
+	text-align: center;
+	color: white;
+}
+
+#curriculo {
+  color: white;
+}
+
+.container
+{
+  position: relative;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  font-family: "Montserrat", sans-serif;	 
+  margin-left: 30px;  
+  text-align: justify;
+}
+
+.corpo {
+  line-height: 1.5;
+}
+
+/* ESTILO DA IMAGEM */
+.imgBox
+{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  margin-top: 30px;
+}
+
+m {
+  font-size: 17px;
+}
+
+.suporte{
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+}
+
+/*ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #000000;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+li a {
+  display: block;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 18px;
+}
+
+li a.active {
+  background-color: #000000;
+  color: #98AFC7;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+li a:hover:not(.active) {
+  background-image: url("dp_wood.jpg");
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-weight: bold;
+}*/
+
+body,h1,h2,h3,h4,h5 {
+	font-family: "Montserrat", sans-serif
+}
+body{
+	font-size:16px;
+}
+
+/* ESTILO DA CAIXA DE NÚMERO */
+input[type=number], select {
+  width: 90px;
+  padding: 10px 10px;
+  margin: 1px 0;
+  display: inline-block;
+  border: 1px solid rgb(185, 183, 183);
+  border-radius: 2px;
+  box-sizing: border-box;
+ /*font-family: "Montserrat", sans-serif;*/
+}
+
+/* ESTILO DA CAIXA DE TEXTO */
+input[type=text], select {
+  width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid rgb(185, 183, 183);
+  border-radius: 2px;
+  box-sizing: border-box;
+  /*font-family: "Montserrat", sans-serif;*/
+}
+
+/* CAIXA DA UNIDADE NA PROP GEOMÉTICA */
+#dp_unidade{
+  width: 100px;
+  margin-left: 10px;
+}
+
+/* CAIXA DA BASE */
+#dp_base{
+  margin-left: 11px;
+}
+
+/* CAIXA DA ALTURA */
+#dp_altura{
+  margin-left: 10px;
+}
+
+/* CAIXA DO VÃO */
+#dp_vao{
+  margin-left: 38px;
+}
+
+/* CAIXA DO ÁREA */
+#dp_area_e{
+  margin-left: 48px;
+  width: 110px;
+}
+
+/* CAIXA DO MOMENTO X */
+#dp_momentox_e{
+  margin-left: 15px;
+  width: 110px;
+}
+
+/* CAIXA DO MOMENTO Y */
+#dp_momentoy_e{
+  margin-left: 15px;
+  width: 110px;
+}
+
+/* CAIXA DO RES X */
+#dp_mod_x_e{
+  margin-left: 2px;
+  width: 110px;
+}
+
+/* CAIXA DA RES Y */
+#dp_mod_y_e{
+  margin-left: 2px;
+  width: 110px;
+}
+
+/* ESTILO DA CAIXA DE NÚMERO DA COND 1 DA VERIF DE FLEXOCOMPRESSÃO */
+#dp_cond_1{
+  width: 120px;
+}
+
+/* ESTILO DA CAIXA DE NÚMERO DA COND 2 DA VERIF DE FLEXOCOMPRESSÃO */
+#dp_cond_2{
+  width: 120px;
+}
+
+/* CAIXA DE ESCOLHER INC SIM OU NÃO */
+#dp_inc{
+  width: 100px;
+  border-radius: 2px;
+  margin-left: 8px;
+}
+
+/* CAIXA DA COND 1 DA VERIF ESTABILIDADE */
+#dp_econd_1{
+  width: 120px;
+}
+
+/* CAIXA DA COND 2 DA VERIF ESTABILIDADE */
+#dp_econd_2{
+  width: 120px;
+}
+
+/* CAIXA DO VALOR DA INC */
+#dp_ang_inc{
+  margin-left: 8px;
+}
+
+/* CAIXA DO A DA INC */
+#dp_a_inc{
+  margin-left: 2px;
+}
+
+/* CAIXA DO L DA INC */
+#dp_l_inc{
+  margin-left: 10px;
+}
+
+/* CAIXA DE ESCOLHER COMP SIMPLES OU FLEXO*/
+#dp_casa{
+  width: 270px;
+}
+
+/* ESTILO DO BOTÃO */
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  border-radius: 2px;
+  color: white;
+  padding: 8px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  padding: 6px 12px;
+}
+/*#2a2b2e*/
+.dp_button {
+  background-color: #2a2b2e	; 
+  color: white; 
+  border: 0px solid black;
+  border-radius: 2px;
+}
+
+.dp_button:hover {
+  background-color: black;
+  color: white;
+}
+
+/* ESTILO DO BOTÃO DE INCLINAÇÃO */
+.dp_button2{
+  background-color: white	; 
+  color: black;
+  text-decoration: underline;
+  padding-left: 0%;
+}
+
+.dp_button2:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+.dp_modal{
+  background-color: white	; 
+  color: black;
+  text-decoration: underline;
+  padding-left: 0%;
+}
+
+.dp_modal:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+/* ESTILO DO CHECKED */
+input[type=radio]{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+
+  border: 2px solid #838284;
+  transition: 0.2s all linear;
+  margin: 0px 2px 0px 8px;
+
+  position: relative;
+  top: 4px;
+}
+
+input:checked {
+  border: 5px solid #2a2b2e;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 2% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  text-align: center;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.resultado{
+  background-color: white;
+  border:6px double black;
+  width: 80%;
+  text-align: left;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  margin-left: auto; /*faz o quadrado da resposta ficar no meio da página*/
+  margin-right: auto; /*faz o quadrado da resposta ficar no meio da página*/
+}
+
+/* FAZ AS CLASSES SUMIREM QUANDO NÃO FOREM SELECIONADAS */
+.dp_oi{
+  display:none
+}
+
+.dp_oi.ativo{
+  display: block;
+}
+
+.dp_compressao{
+  display:none
+}
+
+.dp_compressao.active1{
+  display:block;
+}
+
+.dp_inclinacao{
+  display: none;
+}
+
+.dp_inclinacao.ativo2{
+  display: block;
+}
+
+.dp_inclinacao.op1{
+  font-weight: bold;
+}

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html>
+
+    <script src="../dv-CodigosJS/dv-fgeometria.js"></script><!-- divs, area, momento, resistencia e salvar variáveis -->
+    <script src="../pdfmake.min.js"></script>
+    <script src="../vfs_fonts.js"></script>
+
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="../dv-style.css" media="screen"/><!-- estilo -->
+        <title>Geometria</title>
+
+    </head>
+
+    <body>
+
+        <img src="../dv-Imagens/dv-woodpecker.png" id="logoprograma" width="8%" height="8%"><!-- logo programa -->
+        <img src="../dv-Imagens/dv-ufclaro.png" id="logoufscar" width="10%" height="10%"><!-- logo ufscar -->
+
+        <ul>
+            <!-- Menu -->
+            <li><a class="menu" href="../dv-homepage.html">Início</a></li>
+            <li><a class="menu" href="#same">Geometria</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-resistencia-calculo.html">Resistência ao Cálculo</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-flexao-simples.html">Flexão Simples</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-cisalhamento.html">Cisalhamento</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-compressão.html">Compressão Normal às Fibras</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-estabilidade.html">Estabilidade Lateral de Vigas</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-ELS.html">Estado Limite de Serviço</a></li>
+            <li><a class="menu" href="../dv-CodigosHTML/dv-explicaçao.html">Explicações</a></li>
+        </ul>
+        <br><br><br><br>
+
+        <div style="margin-right: 17%; margin-left: 17%;">
+
+            <!-- Div com breve explicação sobre a página
+                Botão entendi libera o resto
+                Botão não entendi redireciona para explicação mais profunda-->
+            <div id="dv-explicacao-geometria">
+
+                Uma viga é uma peça cujo comprimento é significativamente maior do que a medida 
+                tanto da base quanto da altura da seção transversal.<br>
+                <br>
+                Além disso, de acordo com a ABNT NBR 7190-1:2022 é necessário que a viga apresente uma seção transversal mínima de 
+                5000 mm<sup>2</sup> e uma espessura (base) de 50 mm.<br>
+                <br>
+                As informações necessárias nesta página são:
+                <div style="margin-left: 3%;">
+                    O tipo de viga, biapoiada ou balanço; <br>
+                    Se apresenta mudança brusca de altura e o valor dela(s); <br>
+                    Tamanho da base; <br>
+                    Comprimento da viga, caso seja em balanço; <br>
+                    Tamanho do vão entre os apoios, caso seja biapoiada.
+                </div>
+                <br><br><br>
+
+                <table>
+                    <td>
+                        <button type="button" class="button buttoncalculo" onclick="dv_Entendi()">Entendi</button>
+                    </td>
+                    <td>
+                        <button type="button" class="button buttoncalculo" onclick="location.href='../dv-CodigosHTML/dv-explicaçao.html'">Não Entendi</button>
+                    </td>
+                </table>
+
+            </div>
+
+            <!-- div de entrada de dados -->
+            <div id="dv-entrada-de-dados-geometria" style="display: none;">
+
+                <center><h2>Complete com a geometria da peça que você deseja dimensionar</h2></center>
+                <br><br><br><br>
+
+                <!-- Tipo de viga -->
+                É uma viga biapoiada ou em balanço?<br>
+
+                <!-- Imagem com ambas as configurações de viga, muda com a escolha do radio(JS) -->
+                <img src="../dv-Imagens/dv-5.png" id="dv-tipo-viga" width="50%" height="35%" style="float: right;">
+                <br>
+
+                <!-- Radio que escolhe  tipo de viga -->
+                <input type="radio" id="dv-apo" name="dv-tip-vig" onclick="dv_Tipo()">
+                <label for="dv-apo">Biapoiada</label><br>
+                <input type="radio" id="dv-bal" name="dv-tip-vig" onclick="dv_Tipo()">
+                <label for="dv-bal">Em balanço</label><br>
+                <br>
+
+                Em dúvida?
+                <a href="dv-explicaçao.html" target="_blank">
+                    <span style="cursor:help">
+                        <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                </a>
+                <br><br><br><br><br>
+
+                <!-- Radio relativo ao comportamento da altura -->
+                Apresenta mudança brusca de altura?<br>
+                
+                <!-- Imagem com ambos os tipos de altura, muda com a escolha do radio(JS) -->
+                <img src="../dv-Imagens/dv-9.png" id="dv-tipo-altura" width="50%" height="35%" style="float: right;">
+                <br>
+
+                <input type="radio" id="dv-sim" name="dv-escolha1" value="sim" onclick="dv_EscolhaAltura()">
+                <label for="dv-sim-geo">Sim</label>
+                <input type="radio" id="dv-nao" name="dv-escolha1" value="não" onclick="dv_EscolhaAltura()">
+                <label for="dv-nao-geo">Não</label>
+                <br><br>
+                Em dúvida?
+                <a href="dv-explicaçao.html" target="_blank">
+                    <span style="cursor:help">
+                        <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                </a>
+                <br><br><br><br><br>
+
+                <!-- Campos para entrada de altura com mudança -->
+                <div id="dv-altura-com-mudanca" style="display: none;">
+                
+                    <!-- Maior altura -->
+                    <label for="dv-alt">Altura inicial (h)</label><br>
+                    <input type="number" id="dv-alt" name="dv-alt" value=""> mm<br>
+                    Em dúvida?
+                    <a href="dv-explicaçao.html" target="_blank">
+                        <span style="cursor:help">
+                        <img src="../dv-imagens/dv-duvida.jpg" width="16" height="16"></span>
+                    </a>
+                    <br><br><br><br>
+
+                    <!-- Menor altura -->
+                    <label for="dv-alt-uti">Altura útil (h1)</label>
+
+                    <!-- Imagem com a área mostrando a altura como a altura menor -->
+                    <img src="../dv-Imagens/dv-altura1.png" width="15%" height="15%" style="float: right;">
+                    <br>
+
+                    <!-- Menor altura -->
+                    <input type="number" id="dv-alt-uti" name="dv-alt-uti" value=""> mm<br>
+                    Em dúvida?
+                    <a href="dv-explicaçao.html" target="_blank">
+                        <span style="cursor:help">
+                        <img src="../dv-imagens/dv-duvida.jpg" width="16" height="16"></span>
+                    </a>
+                    <br><br><br><br>
+
+                </div>
+
+                <!-- Campo para entrada de altura sem mudanca -->
+                <div id="dv-altura-sem-mudanca" style="display: none;">
+
+                    <!-- Altura unica -->
+                    <label for="dv-alt-con">Altura (h)</label><br>
+                    <input type="number" id="dv-alt-con" name="dv-alt-con" value=""> mm<br>
+                            Em dúvida?
+                            <a href="dv-explicaçao.html" target="_blank">
+                                <span style="cursor:help">
+                                    <img src="../dv-imagens/dv-duvida.jpg" width="16" height="16"></span>
+                            </a>
+
+                    <!-- Imagem com a área mostrando a altura como a altura constante -->
+                    <img src="../dv-Imagens/dv-altura2.png" width="15%" height="15%" style="float: right;">
+                    
+
+                    <br><br><br><br>
+                </div>
+
+                <!-- Tamanho da base -->
+                <label for="dv-bas">Base (b)</label><br>
+                <input type="number" id="dv-bas" value=""> mm<br>
+                Em dúvida?
+                <a href="dv-explicaçao.html" target="_blank">
+                    <span style="cursor:help">
+                        <img src="../dv-Imagens/dv-duvida.jpg" width="16" height="16"></span>
+                </a>
+                <br><br><br><br>
+
+                <div id="dv-entrada-balanco" style="display: none;">
+
+                    <!-- Comprimento da viga -->
+                    <label for="dv-com">Comprimento da viga (c)</label>
+                    
+                    <!-- Imagem da viga em balanço com cota -->
+                    <img src="../dv-Imagens/dv-4.png" width="20%" height="15%" style="float: right;">
+                    <br>
+
+                    <input type="number" id="dv-com" value=""> m<br>
+                    Em dúvida?
+                    <a href="dv-explicaçao.html" target="_blank">
+                        <span style="cursor:help">
+                            <img src="../dv-imagens/dv-duvida.jpg" width="16" height="16"></span>
+                    </a>
+                    <br><br><br><br>
+
+                </div>
+
+                <div id="dv-entrada-biapoiada" style="display: none;">
+
+                    <!-- tamanho do vão entre apoios -->
+                    <label for="dv-vao">Vão entre os apoios (v)</label>
+
+                    <!-- Imagem da viga biapoiada com cota -->
+                    <img src="../dv-Imagens/dv-2.png" width="20%" height="15%" style="float: right;">
+                    <br>
+
+                    <input type="number" id="dv-vao" value=""> m<br>
+                    Em dúvida?
+                    <a href="dv-explicaçao.html" target="_blank">
+                        <span style="cursor:help">
+                            <img src="../dv-imagens/dv-duvida.jpg" width="16" height="16"></span>
+                    </a>
+                    <br><br><br><br>
+                </div>
+
+                <!-- Salva os valores inseridos e aparece os botões das contas -->
+                <button type="button" class="button buttoncalculo" onclick="dv_VerificarGeo()">Salvar Valores</button>
+                <br><br><br><br>
+
+                <div id="dv-contas-geometria" style="display: none">
+
+                    <!-- Calcula a área -->
+                    <button type="button" class="button buttoncalculo" onclick="dv_Area()">Calcular Área</button>
+                    
+                    <!-- Aparece quando há modificação na altura (radio - altura) -->
+                    <div id="dv-resultado-com-mudanca" style="display: none;"><br>
+
+                        A área da seção transversal da viga é: <ins id="dv-are-alt"></ins> <ins id="dv-uni-alt"></ins><br><br>
+                        A área da secção transversal útil da viga é: <ins id="dv-are-uti"></ins> <ins id="dv-uni-uti"></ins>
+        
+                    </div>
+        
+                    <!-- Aparece quando não há modificação na altura (radio - altura) -->
+                    <div id="dv-resultado-sem-mudanca" style="display: none;"><br>
+
+                        A área da seção transversal da viga é: <ins id="dv-are-uni"></ins> <ins id="dv-uni-uni"></ins>
+
+                    </div>
+
+                    <br><br><br><br>
+                    
+                    <!-- Calcula os momentos -->
+                    <button type="button" class="button buttoncalculo" onclick="dv_Inercia()">Calcular Momento de Inércia</button><br><br>
+
+                    O valor do momento de inércia em x é: <ins id="dv-ine-x"></ins> <ins id="dv-uni-ine-x"></ins><br><br>
+                    O valor do momento de inércia em y é: <ins id="dv-ine-y"></ins> <ins id="dv-uni-ine-y"></ins>
+
+                    <br><br><br><br>
+
+
+                    <!-- Calcula o modulo de resistencia geométrica -->
+                    <button type="button" class="button buttoncalculo" onclick="dv_ResistenciaGeometrica()">Calcular Módulo de Resistência</button><br><br>
+
+                    O módulo de resistência em x é: <ins id="dv-res-geo-x"></ins> <ins id="dv-uni-res-geo-x"></ins><br><br>
+                    O módulo de resistência em y é: <ins id="dv-res-geo-y"></ins> <ins id="dv-uni-res-geo-y"></ins>
+
+                    <br><br><br><br>
+
+                    <!-- Libera o PDF com as contas -->
+                    <button type="button" class="button buttoncalculo" onclick="dv_PDFGeo()">Emitir PDF</button>
+                    <br><br><br><br>
+
+                    <a href="../dv-CodigosHTML/dv-resistencia-calculo.html">Continue aqui</a>
+                    <br><br><br><br>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="dv-rodape" class="rodape" style="display: none;">
+            <div class="row">
+                <div class="column">
+                    <b>Desenvolvido por:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/4101333847048666" target="_blank">
+                        Raquel Oliveira Azevedo
+                    </a><br>
+					<a href="http://lattes.cnpq.br/7623383075429186" target="_blank">
+						André Luis Christoforo
+					</a><br>
+                    <a href="http://lattes.cnpq.br/1986028653323442" target="_blank">
+                        Isabella Silva Menezes
+                    </a><br>
+                </div>
+				<div class="column">
+                    <b>Colaboradores:</b><br>
+                    <br>
+                    <a href="http://lattes.cnpq.br/8465474056220474" target="_blank">
+                        Matheus Henrique Morato de Moraes
+                    </a><br>
+					<a href="http://lattes.cnpq.br/2333091200416653" target="_blank">
+						Francisco Antonio Rocco Lahr
+					</a><br>
+                    <a href="http://lattes.cnpq.br/2268506213083114" target="_blank">
+                        Wanderlei Malaquias Pereira Junior
+                    </a><br>
+                </div>
+                <div class="column">
+                    <b>Contato</b><br>
+                    <br>
+                    <a>ec.isabellasm@gmail.com</a><br>
+                    <a>raquel.azevedo@estudante.ufscar.br</a><br><br>
+                    <b>Logo</b>: Julia Sanchez Sáez
+                </div>
+                <div class="column" align="right">
+                    <b>Referência</b>
+                    <br><br>
+                    ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. ABNT NBR 7190-1: Projeto de estruturas de madeira – Parte 1: Critérios de dimensionamento. Rio de Janeiro: ABNT, 2022.
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,181 @@
+/*   ESTILO MENU  */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #000000;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+li a {
+  display: block;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+li a.active {
+  background-color: #000000;
+  color: yellow;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+li a:hover:not(.active) {
+  background-image: url("wood.jpg");
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+/*   FIM ESTILO MENU  */
+
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {
+ font-size:16px;
+ margin: 0;
+}
+
+input[type=number],select{
+  width: 15%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=text]{
+  width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid black;
+  width: 1190px;  /* Define uma largura fixa */
+  height: 50px;  /* Define uma altura fixa */
+  text-align: center;  /* Centraliza o texto */
+  font-size: 16px;  /* Ajusta o tamanho do texto */
+  cursor: pointer; /* Mantém o cursor no formato de clique */
+}
+
+.button1:hover {
+  background-color: black;
+  color: white;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Create a custom radio button */
+input[type=radio] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+
+  border: 2px solid red;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+}
+
+input[type=radio]:checked {
+border: 9px solid red;
+}
+
+.textradio{
+font-size:22px;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.container {
+    display: flex; /* Usa flexbox para organizar as colunas */
+    justify-content: space-between; /* Espaçamento entre as colunas */
+}
+
+.coluna {
+    width: 48%; /* Define que cada coluna vai ocupar cerca de 48% da largura do contêiner */
+    background-color: #f4f4f4; /* Cor de fundo para destacar */
+    padding: 10px; /* Espaçamento interno */
+}
