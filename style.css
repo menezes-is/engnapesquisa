@@ -82,7 +82,7 @@ input[type=text]{
   background-color: white; 
   color: black; 
   border: 2px solid black;
-  width: 1050px;  /* Define uma largura fixa */
+  width: 150px;  /* Define uma largura fixa */
   height: 50px;  /* Define uma altura fixa */
   text-align: center;  /* Centraliza o texto */
   font-size: 16px;  /* Ajusta o tamanho do texto */
